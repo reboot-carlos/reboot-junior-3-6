@@ -1,32 +1,17 @@
-"""
-Ceci est le CERVEAU de ton projet (le backend).
-
-Le backend, c'est la partie qui tourne sur un serveur, que personne ne voit
-directement. C'est lui qui reçoit les questions du frontend (l'interface),
-qui réfléchit (en appelant une IA, une base de données, une API...) et qui
-renvoie une réponse.
-
-Pour l'instant ce fichier ne fait presque rien : il te donne juste le
-squelette. À toi d'ajouter la logique dans les sections marquées TODO.
-"""
-
-from __future__ import annotations
-
 import os
-from pathlib import Path
-
+import httpx
+import json
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 from pydantic import BaseModel
+from pathlib import Path
 
-# 1) On crée l'application. Le "title" apparaît dans la doc auto-générée
-#    (disponible sur /docs une fois le serveur lancé).
-app = FastAPI(title="Mon Projet — Backend")
+from dotenv import load_dotenv
+load_dotenv()
 
-# 2) CORS : autorise le frontend (qui tourne sur une autre adresse/port)
-#    à appeler ce backend. Sans ça, le navigateur bloque les requêtes.
+app = FastAPI(title="Testicrousti")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -35,39 +20,131 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+api_key = os.environ.get("ANTHROPIC_API_KEY")
+if not api_key:
+    raise ValueError("ANTHROPIC_API_KEY non trouvée dans les variables d'environnement")
 
-# 3) Un exemple de "schéma" : ça décrit la forme des données que le
-#    frontend va t'envoyer. Adapte les champs à ton projet.
-class ExampleRequest(BaseModel):
-    message: str
+ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
 
+class ChatRequest(BaseModel):
+    message: str | None = None
+    step: str | None = None
+    test_name: str | None = None
+    questions: list | None = None
+    answers: list | None = None
 
-# 4) Un endpoint de test tout bête, pour vérifier que le serveur répond.
-#    Railway s'en sert aussi comme "healthcheck" (voir railway.toml).
+def call_claude(messages: list, system_prompt: str) -> str:
+    headers = {
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+    }
+
+    payload = {
+        "model": "claude-3-sonnet-20240229",
+        "max_tokens": 1000,
+        "system": system_prompt,
+        "messages": messages,
+    }
+
+    try:
+        with httpx.Client() as client:
+            response = client.post(ANTHROPIC_API_URL, json=payload, headers=headers, timeout=30.0)
+            if response.status_code != 200:
+                print(f"Erreur API: {response.status_code} - {response.text}")
+                response.raise_for_status()
+
+            data = response.json()
+            return data["content"][0]["text"]
+    except Exception as e:
+        print(f"Erreur lors de l'appel Claude: {e}")
+        raise
+
 @app.get("/health")
 async def health() -> dict:
     return {"status": "ok"}
 
+@app.post("/api/chat")
+async def chat(request: ChatRequest) -> dict:
+    if request.step == "generate_test":
+        # Générer 7 questions pour le test
+        system_prompt = """Tu es Testicrousti, un chatbot bienveillant et professionnel.
+Tu dois générer exactement 7 questions à choix multiples pour un test de personnalité.
+Chaque question doit avoir exactement 4 options (A, B, C, D).
 
-# 5) TODO — ton premier endpoint "métier".
-#    Exemple d'idée : recevoir un message et renvoyer une réponse.
-#    Remplace le contenu de la fonction par ta propre logique
-#    (appeler une IA, faire un calcul, aller chercher une donnée...).
-@app.post("/api/example")
-async def example_endpoint(request: ExampleRequest) -> dict:
-    # TODO: remplace cette ligne par ta vraie logique
-    return {"reply": f"Tu as envoyé : {request.message}"}
+Réponds UNIQUEMENT avec un JSON valide, sans aucun texte avant ou après, suivant ce format:
+{
+  "questions": [
+    {
+      "text": "Question 1?",
+      "options": ["Option A", "Option B", "Option C", "Option D"]
+    },
+    ...
+  ]
+}
 
+Les questions doivent être pertinentes, engageantes et aider à mieux connaître la personne."""
 
-# 6) TODO — si ton projet utilise une clé secrète (API IA, base de
-#    données...), lis-la depuis les variables d'environnement, JAMAIS
-#    écrite en dur dans le code :
-#
-#    api_key = os.environ.get("MA_CLE_SECRETE")
+        user_message = f"Crée 7 questions à choix multiples pour un test: '{request.message}'"
 
+        try:
+            response_text = call_claude(
+                [{"role": "user", "content": user_message}],
+                system_prompt
+            )
 
-# 7) Servir les fichiers statiques du frontend construit (uniquement en production).
-#    En développement (./start.sh), Vite gère le frontend séparément.
+            # Extraire le JSON
+            json_start = response_text.find("{")
+            json_end = response_text.rfind("}") + 1
+            json_str = response_text[json_start:json_end]
+            data = json.loads(json_str)
+
+            return {"questions": data["questions"]}
+        except Exception as e:
+            print(f"Erreur: {e}")
+            return {
+                "questions": [
+                    {
+                        "text": "Erreur lors de la génération. Réessaie!",
+                        "options": ["A", "B", "C", "D"]
+                    }
+                ]
+            }
+
+    elif request.step == "generate_profile":
+        # Générer le profil basé sur les réponses
+        system_prompt = """Tu es Testicrousti, un chatbot bienveillant et professionnel.
+Tu dois générer un profil personnalisé basé sur les réponses du test.
+Le profil doit être:
+- Honnête et perspicace (3-4 paragraphes)
+- Positif et encourageant
+- Basé sur les patterns de réponses
+- En français, naturel et chaleureux
+
+Sois authentique, pas génériques ni plats."""
+
+        # Construire le contexte des réponses
+        context = f"Test: {request.test_name}\n\nQuestions et réponses:\n"
+        for i, q in enumerate(request.questions):
+            answer_letter = request.answers[i]
+            answer_text = q["options"][ord(answer_letter) - ord('A')]
+            context += f"Q{i+1}: {q['text']}\nRéponse: {answer_letter} - {answer_text}\n\n"
+
+        user_message = f"Génère un profil personnalisé basé sur ces réponses:\n{context}"
+
+        try:
+            profile = call_claude(
+                [{"role": "user", "content": user_message}],
+                system_prompt
+            )
+            return {"profile": profile}
+        except Exception as e:
+            print(f"Erreur: {e}")
+            return {"profile": "Profil indisponible pour le moment."}
+
+    return {"error": "Requête invalide"}
+
+# Servir le frontend en production
 static_dir = Path(__file__).parent / "static"
 if static_dir.exists():
     app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
