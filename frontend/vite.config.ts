@@ -10,7 +10,8 @@ export default defineConfig({
     // En dev, les appels à /api/... sont redirigés vers le backend local.
     // En prod, c'est nginx qui fait ce travail (voir nginx.conf.template).
     proxy: {
-      "/api": "http://localhost:8001",
-    },
-  },
+      "/api": "http://localhost:8001"
+    }
+  }
 });
+    
