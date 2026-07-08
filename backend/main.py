@@ -33,7 +33,7 @@ class ChatRequest(BaseModel):
     language: str | None = None
 
 def ask_test_customization(test_name: str, language: str = "fr") -> str:
-    """Demande à l'utilisateur comment personnaliser le test"""
+    """Demande à l'utilisateur comment personnaliser le test avec support multilingue"""
     lang_name = {
         "fr": "français",
         "en": "english",
@@ -64,10 +64,14 @@ IMPORTANT:
     )
     return response.content[0].text
 
-def generate_test_with_claude(test_name: str, user_preference: str = "") -> dict:
-    """Génère 7 questions de test personnalisées en fonction des préférences"""
-    system_prompt = """Tu es un expert en création de tests de personnalité pour jeunes adultes.
-Tu dois générer 7 questions pertinentes, originales et engageantes, adaptées à la préférence de l'utilisateur.
+def generate_test_with_claude(test_name: str, user_preference: str = "", language: str = "fr") -> dict:
+    """Génère 10 questions de test personnalisées en fonction des préférences et de la langue"""
+
+    # Prompts en différentes langues
+    prompts = {
+        "fr": {
+            "system": """Tu es un expert en création de tests de personnalité pour jeunes adultes.
+Tu dois générer 10 questions pertinentes, originales et engageantes, adaptées à la préférence de l'utilisateur.
 
 RÈGLES STRICTES:
 1. Retourne UNIQUEMENT un JSON valide, sans markdown ni texte supplémentaire
@@ -76,14 +80,14 @@ RÈGLES STRICTES:
 4. Aucune option ne doit être clairement "meilleure" qu'une autre
 5. Les questions doivent explorer la psychologie et les préférences de manière subtile
 6. Les questions doivent être personnalisées en fonction du commentaire de l'utilisateur
+7. Réponds TOUJOURS en français
 
 Format JSON (EXACTEMENT):
 {"questions": [
   {"text": "Question?", "options": ["Option A", "Option B", "Option C", "Option D"]},
   ...
-]}"""
-
-    user_message = f"""Crée 7 questions uniques pour ce test: {test_name}
+]}""",
+            "user": f"""Crée 10 questions uniques pour ce test: {test_name}
 
 Préférence de l'utilisateur: {user_preference}
 
@@ -96,6 +100,109 @@ Les questions doivent:
 - Révéler quelque chose d'authentique sur la personne
 
 Retourne UNIQUEMENT le JSON, rien d'autre."""
+        },
+        "en": {
+            "system": """You are an expert in creating personality tests for young adults.
+You must generate 10 relevant, original and engaging questions, adapted to the user's preference.
+
+STRICT RULES:
+1. Return ONLY valid JSON, no markdown or extra text
+2. Each question must have a different approach
+3. The 4 options must be nuanced and represent different perspectives
+4. No option should be clearly "better" than another
+5. Questions should explore psychology and preferences subtly
+6. Questions should be personalized based on user comment
+7. Always respond in English
+
+JSON Format (EXACTLY):
+{"questions": [
+  {"text": "Question?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+  ...
+]}""",
+            "user": f"""Create 10 unique questions for this test: {test_name}
+
+User preference: {user_preference}
+
+The questions should:
+- Be varied in style
+- Cover different dimensions of the "{test_name}" theme
+- Be adapted to the user's mentioned preference
+- Be engaging and relevant for young people
+- Have nuanced answers with no "perfect" answer
+- Reveal something authentic about the person
+
+Return ONLY the JSON, nothing else."""
+        },
+        "de": {
+            "system": """Du bist ein Experte im Erstellen von Persönlichkeitstests für junge Erwachsene.
+Du musst 10 relevante, originelle und ansprechende Fragen generieren, die den Vorlieben des Benutzers entsprechen.
+
+STRIKTE REGELN:
+1. Geben Sie NUR gültiges JSON zurück, kein Markdown oder zusätzlicher Text
+2. Jede Frage muss einen anderen Ansatz haben
+3. Die 4 Optionen müssen nuanciert sein und verschiedene Perspektiven darstellen
+4. Keine Option sollte eindeutig "besser" sein als eine andere
+5. Fragen sollten Psychologie und Vorlieben subtil erforschen
+6. Fragen sollten basierend auf Benutzerkommentar personalisiert werden
+7. Antworte immer auf Deutsch
+
+JSON Format (GENAU):
+{"questions": [
+  {"text": "Frage?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+  ...
+]}""",
+            "user": f"""Erstellen Sie 10 einzigartige Fragen für diesen Test: {test_name}
+
+Benutzervorliebe: {user_preference}
+
+Die Fragen sollten:
+- Im Stil variiert sein
+- Verschiedene Dimensionen des Themas "{test_name}" abdecken
+- An die genannte Vorliebe des Benutzers angepasst sein
+- Ansprechend und relevant für junge Menschen sein
+- Nuancierte Antworten ohne "perfekte" Antwort haben
+- Etwas Authentisches über die Person offenbaren
+
+Geben Sie NUR das JSON zurück, nichts anderes."""
+        },
+        "es": {
+            "system": """Eres un experto en crear pruebas de personalidad para adultos jóvenes.
+Debes generar 10 preguntas relevantes, originales y atractivas, adaptadas a la preferencia del usuario.
+
+REGLAS ESTRICTAS:
+1. Devuelve SOLO JSON válido, sin markdown ni texto extra
+2. Cada pregunta debe tener un enfoque diferente
+3. Las 4 opciones deben ser matizadas y representar diferentes perspectivas
+4. Ninguna opción debe ser claramente "mejor" que otra
+5. Las preguntas deben explorar la psicología y preferencias sutilmente
+6. Las preguntas deben personalizarse según el comentario del usuario
+7. Siempre responde en español
+
+Formato JSON (EXACTAMENTE):
+{"questions": [
+  {"text": "¿Pregunta?", "options": ["Opción A", "Opción B", "Opción C", "Opción D"]},
+  ...
+]}""",
+            "user": f"""Crea 10 preguntas únicas para esta prueba: {test_name}
+
+Preferencia del usuario: {user_preference}
+
+Las preguntas deben:
+- Ser variadas en estilo
+- Cubrir diferentes dimensiones del tema "{test_name}"
+- Estar adaptadas a la preferencia mencionada del usuario
+- Ser atractivas y relevantes para jóvenes
+- Tener respuestas matizadas sin respuesta "perfecta"
+- Revelar algo auténtico sobre la persona
+
+Devuelve SOLO el JSON, nada más."""
+        }
+    }
+
+    # Obtener prompts en la lengua solicitada, por defecto francés
+    lang_prompts = prompts.get(language, prompts["fr"])
+    system_prompt = lang_prompts["system"]
+    user_message = lang_prompts["user"]
 
     response = client.messages.create(
         model="claude-haiku-4-5-20251001",
@@ -272,7 +379,8 @@ async def chat(request: ChatRequest) -> dict:
         try:
             test_name = request.test_name or request.message or ""
             user_preference = request.message or ""
-            data = generate_test_with_claude(test_name, user_preference)
+            language = request.language or "fr"
+            data = generate_test_with_claude(test_name, user_preference, language)
             return {"questions": data["questions"]}
         except Exception as e:
             print(f"Erreur génération test: {e}")
