@@ -311,7 +311,7 @@ function App() {
   const [currentDate, setCurrentDate] = useState("");
   const [language, setLanguage] = useState<string | null>(null);
   const [_hkoData, setHkoData] = useState<{temp: number, humidity: number} | null>(null);
-  const [location, setLocation] = useState<string | null>(null);
+  const [_location, setLocation] = useState<string | null>(null);
   const [aiPersonality, setAiPersonality] = useState<"sympa" | "professionnel">("sympa");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -1275,16 +1275,6 @@ function App() {
         </div>
 
       </div>
-
-      {/* Localisation */}
-      {location && (
-        <div className="fixed top-2 left-80 px-4 py-3 rounded-lg text-white shadow-lg z-40" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
-          <div className="flex flex-col items-center">
-            <div className="font-semibold">📍 Tu es à</div>
-            <div className="text-lg font-bold">{location}</div>
-          </div>
-        </div>
-      )}
 
       {/* Météo, date et menu en haut */}
       <div className="fixed top-2 right-6 px-4 py-3 rounded-lg text-white shadow-lg z-40 flex items-center gap-8" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
