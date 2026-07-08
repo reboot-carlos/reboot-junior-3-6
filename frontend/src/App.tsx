@@ -326,7 +326,7 @@ function App() {
       menu: "Menu",
       history: "Historique",
       emptyHistory: "Aucun test encore",
-      clearHistory: "Vider la corbeille",
+      clearHistory: "Vider l'historique",
       chooseLanguage: "Choisis ta langue",
     },
     es: {
@@ -1090,14 +1090,14 @@ function App() {
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#9a7a6a')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a68a7a')}
         >
-          🗑️ {language && translations[language].clearHistory}
+          {language && translations[language].clearHistory}
         </button>
       </div>
 
       <div className="flex-1 flex flex-col rounded-none shadow-none overflow-hidden" style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité */}
-        <div className="p-3 flex justify-center gap-4" style={{backgroundColor: '#7a8c78'}}>
+        <div className="p-3 flex justify-start gap-4 pl-10" style={{backgroundColor: '#7a8c78'}}>
           <button
             onClick={() => setAiPersonality("sympa")}
             className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
