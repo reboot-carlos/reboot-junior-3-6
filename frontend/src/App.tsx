@@ -917,11 +917,32 @@ function App() {
           }
           .splash-languages button {
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          .splash-languages button:hover {
+            transform: scale(1.15) translateY(-2px);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
           }
           .splash-button {
-            animation: fadeInUp 1s ease-out 2.4s forwards;
+            animation: fadeInUp 1s ease-out 2.4s forwards, buttonGlow 2s ease-in-out 3s infinite;
             opacity: 0;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
+          }
+          .splash-button:hover:not(:disabled) {
+            transform: scale(1.05) translateY(-2px);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+          }
+          @keyframes buttonGlow {
+            0%, 100% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
+            50% { filter: drop-shadow(0 4px 12px rgba(139, 158, 133, 0.6)); }
+          }
+          @keyframes titlePulse {
+            0%, 100% { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 rgba(255, 255, 255, 0); }
+            50% { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
+          }
+          .splash-title {
+            animation: fadeInUp 1s ease-out 1.2s forwards, titlePulse 3s ease-in-out 3s infinite;
           }
         `}</style>
 
