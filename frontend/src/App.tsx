@@ -1109,7 +1109,7 @@ function App() {
             onMouseEnter={(e) => aiPersonality !== "sympa" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
           >
-            😊 Sympa
+            Sympa
           </button>
           <button
             onClick={() => setAiPersonality("professionnel")}
@@ -1122,7 +1122,7 @@ function App() {
             onMouseEnter={(e) => aiPersonality !== "professionnel" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
           >
-            💼 Professionnel
+            Professionnel
           </button>
         </div>
 
