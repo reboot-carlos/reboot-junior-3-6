@@ -314,6 +314,7 @@ function App() {
   const [aiPersonality, setAiPersonality] = useState<"sympa" | "professionnel">("sympa");
   const [selectedGroup, setSelectedGroup] = useState<"gouts" | "orientation" | null>(null);
   const [profileNumber, setProfileNumber] = useState(1);
+  const [showProfileSelector, setShowProfileSelector] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -1196,19 +1197,63 @@ function App() {
               Professionnel
             </button>
           </div>
-          <button
-            onClick={startChat}
-            className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
-            style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-              color: '#ffffff',
-              border: '2px solid white',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
-          >
-            + Nouveau profil
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={startChat}
+              className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
+              style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
+            >
+              + Nouveau profil
+            </button>
+            {profileNumber > 1 && (
+              <div className="relative">
+                <button
+                  onClick={() => setShowProfileSelector(!showProfileSelector)}
+                  className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
+                    border: '2px solid white',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
+                >
+                  📁 Mes profils ({profileNumber - 1})
+                </button>
+                {showProfileSelector && (
+                  <div
+                    className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-lg z-50 min-w-48"
+                    style={{backgroundColor: '#f1f5f0', border: '2px solid #8b9e85'}}
+                  >
+                    {Array.from({length: profileNumber - 1}, (_, i) => i + 1).map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => {
+                          setProfileNumber(num);
+                          setShowProfileSelector(false);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-opacity-50 transition-all border-b"
+                        style={{
+                          backgroundColor: profileNumber === num ? '#d8e4d3' : '#eef2ec',
+                          borderColor: '#8b9e85',
+                          color: '#3d4a38',
+                        }}
+                      >
+                        Profil {num}
+                        {profileNumber === num && ' ✓'}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* En-tête */}
