@@ -1074,18 +1074,18 @@ function App() {
             disabled={!language || !testType}
             className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all rounded-lg"
             style={{
-              backgroundColor: language && testType ? 'rgba(139, 158, 133, 0.25)' : 'rgba(139, 158, 133, 0.1)',
+              backgroundColor: language && testType ? 'rgba(139, 158, 133, 0.6)' : 'rgba(139, 158, 133, 0.35)',
               color: '#1a1a1a',
-              border: '2px solid rgba(139, 158, 133, 0.6)',
+              border: '2px solid rgba(139, 158, 133, 0.9)',
               cursor: language && testType ? 'pointer' : 'not-allowed',
-              opacity: language && testType ? 1 : 0.6,
+              opacity: language && testType ? 1 : 0.7,
               fontWeight: 'bold',
               animation: language && testType ? 'subtleHover 3s ease-in-out 0.6s infinite' : 'none',
               backdropFilter: 'blur(8px)',
               boxShadow: language && testType ? '0 4px 12px rgba(0, 0, 0, 0.15)' : 'none',
             }}
-            onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(139, 158, 133, 0.35)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? 'rgba(139, 158, 133, 0.25)' : 'rgba(139, 158, 133, 0.1)')}
+            onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(139, 158, 133, 0.75)')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? 'rgba(139, 158, 133, 0.6)' : 'rgba(139, 158, 133, 0.35)')}
           >
             {language && testType ? translations[language].start : language ? "Choisir un type de test" : "Choisir une langue"}
           </button>
