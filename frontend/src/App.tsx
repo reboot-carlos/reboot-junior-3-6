@@ -1258,26 +1258,27 @@ function App() {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            const newDeleted = new Set(deletedProfiles);
-                            newDeleted.add(num);
-                            setDeletedProfiles(newDeleted);
-                            if (profileNumber === num) {
-                              const activeProfiles = Array.from({length: profileNumber - 1}, (_, i) => i + 1)
-                                .filter(n => !newDeleted.has(n));
-                              if (activeProfiles.length > 0) {
-                                setProfileNumber(activeProfiles[activeProfiles.length - 1]);
+                            if (confirm('Supprimer ce profil ?')) {
+                              const newDeleted = new Set(deletedProfiles);
+                              newDeleted.add(num);
+                              setDeletedProfiles(newDeleted);
+                              if (profileNumber === num) {
+                                const activeProfiles = Array.from({length: profileNumber - 1}, (_, i) => i + 1)
+                                  .filter(n => !newDeleted.has(n));
+                                if (activeProfiles.length > 0) {
+                                  setProfileNumber(activeProfiles[activeProfiles.length - 1]);
+                                }
                               }
                             }
                           }}
-                          className="ml-2 px-2 py-1 rounded text-xs font-semibold transition-all"
+                          className="ml-2 px-3 py-1 rounded-lg text-xs font-semibold transition-all text-white border-2"
                           style={{
-                            backgroundColor: '#ff6b6b',
-                            color: '#ffffff',
-                            border: 'none',
+                            backgroundColor: '#a68a7a',
+                            borderColor: '#9a7a6a',
                             cursor: 'pointer',
                           }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ee5a5a')}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff6b6b')}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#9a7a6a')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a68a7a')}
                         >
                           Supprimer
                         </button>
