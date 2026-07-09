@@ -60,6 +60,9 @@ const TEST_CATEGORIES_GOUTS: TestCategory[] = [
   { id: "alimentation", name: "Alimentation", description: "Tes habitudes et préférences alimentaires" },
   { id: "couleurs", name: "Couleurs", description: "Tes préférences de couleurs favorites" },
   { id: "objets", name: "Objets", description: "Tes goûts pour les objets et accessoires" },
+  { id: "lieux_batiments", name: "Lieux et bâtiments", description: "Tes préférences pour les lieux et les styles architecturaux" },
+  { id: "sport", name: "Sport", description: "Tes préférences sportives et d'activités physiques" },
+  { id: "culturel", name: "Culturel", description: "Tes goûts et préférences culturels" },
 ];
 
 const TEST_CATEGORIES_ORIENTATION: TestCategory[] = [
@@ -1232,7 +1235,7 @@ function App() {
                 <div className="font-bold">
                   {language === 'fr' ? 'Tes goûts' : language === 'en' ? 'Your tastes' : language === 'de' ? 'Deine Vorlieben' : language === 'es' ? 'Tus gustos' : language === 'it' ? 'I tuoi gusti' : language === 'zh' ? '你的品味' : language === 'ru' ? 'Твои вкусы' : language === 'pt' ? 'Seus gostos' : language === 'he' ? 'הטעמים שלך' : language === 'el' ? 'Τα γούστα σου' : 'Tes goûts'}
                 </div>
-                <div className="text-xs" style={{color: '#5a6a55'}}>Mode, Animaux, Alimentation, Couleurs, Objets</div>
+                <div className="text-xs" style={{color: '#5a6a55'}}>Mode, Animaux, Alimentation, Couleurs, Objets...</div>
               </button>
 
               <button
