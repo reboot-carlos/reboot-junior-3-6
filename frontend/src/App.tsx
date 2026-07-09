@@ -304,7 +304,7 @@ function App() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [_questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState<any[]>([]);
-  const [history, setHistory] = useState<Array<{id: number, name: string, date: string}>>([]);
+  const [history, setHistory] = useState<Array<{id: number, name: string, date: string, categoryId: string, questionIndex: number, answers: string[], questions: any[]}>>([]);
   const [showSplash, setShowSplash] = useState(true);
   const [weather, setWeather] = useState<Weather | null>(null);
   const [currentDate, setCurrentDate] = useState("");
@@ -727,6 +727,10 @@ function App() {
           id: prev.length + 1,
           name: testName || "Test",
           date: dateStr,
+          categoryId: _testCategory || "",
+          questionIndex: 0,
+          answers: [],
+          questions: data.questions,
         },
       ]);
 
@@ -770,6 +774,14 @@ function App() {
 
     const newAnswers = [...answers, answer];
     setAnswers(newAnswers);
+
+    setHistory((prev) =>
+      prev.map((item) =>
+        item.id === history[history.length - 1]?.id
+          ? { ...item, questionIndex: newAnswers.length, answers: newAnswers }
+          : item
+      )
+    );
 
     if (newAnswers.length === 10) {
       // Test terminé, générer le profil
@@ -1082,14 +1094,37 @@ function App() {
             <p className="text-white text-sm opacity-70">{language && translations[language].emptyHistory}</p>
           ) : (
             history.map((item) => (
-              <div
+              <button
                 key={item.id}
-                className="p-3 rounded-lg text-white text-sm transition-all"
+                onClick={() => {
+                  if (item.questionIndex < 10) {
+                    setTestName(item.name);
+                    setTestCategory(item.categoryId);
+                    setQuestions(item.questions);
+                    setAnswers(item.answers);
+                    setQuestionIndex(item.questionIndex);
+                    setMode("test");
+                    setMessages([
+                      {
+                        id: 1,
+                        text: `Reprenons le test "${item.name}" où tu t'es arrêté!\n\nVoici la question ${item.questionIndex + 1} sur 10:\n\n${item.questions[item.questionIndex].text}`,
+                        isBot: true,
+                      }
+                    ]);
+                  }
+                }}
+                className="w-full p-3 rounded-lg text-white text-sm transition-all text-left hover:brightness-110"
                 style={{backgroundColor: 'rgba(255, 255, 255, 0.15)'}}
               >
                 <div className="font-semibold">{item.name}</div>
                 <div className="text-xs opacity-70">{item.date}</div>
-              </div>
+                <div className="text-xs opacity-80 mt-1">
+                  {item.questionIndex < 10
+                    ? `Progression: ${item.questionIndex}/10 réponses`
+                    : 'Terminé ✓'
+                  }
+                </div>
+              </button>
             ))
           )}
         </div>
