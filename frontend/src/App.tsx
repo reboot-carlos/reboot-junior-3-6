@@ -928,6 +928,64 @@ function App() {
             background-position: 30px -60px;
             background-attachment: fixed;
           }
+          @keyframes floatPixel {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+            25% { transform: translateY(-8px) translateX(4px); opacity: 0.8; }
+            50% { transform: translateY(-16px) translateX(0px); opacity: 1; }
+            75% { transform: translateY(-8px) translateX(-4px); opacity: 0.8; }
+          }
+          .pixel-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 8;
+            pointer-events: none;
+          }
+          .pixel {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 255, 200, 0.7);
+            box-shadow: 0 0 4px rgba(255, 255, 150, 0.6);
+          }
+          .pixel:nth-child(1) {
+            width: 6px; height: 6px;
+            left: 25%; top: 40%;
+            animation: floatPixel 6s ease-in-out infinite;
+          }
+          .pixel:nth-child(2) {
+            left: 35%; top: 35%;
+            animation: floatPixel 8s ease-in-out 0.5s infinite;
+          }
+          .pixel:nth-child(3) {
+            width: 5px; height: 5px;
+            left: 45%; top: 45%;
+            animation: floatPixel 7s ease-in-out 1s infinite;
+          }
+          .pixel:nth-child(4) {
+            left: 55%; top: 38%;
+            animation: floatPixel 6.5s ease-in-out 1.5s infinite;
+          }
+          .pixel:nth-child(5) {
+            width: 6px; height: 6px;
+            left: 65%; top: 42%;
+            animation: floatPixel 7.5s ease-in-out 2s infinite;
+          }
+          .pixel:nth-child(6) {
+            left: 75%; top: 36%;
+            animation: floatPixel 8s ease-in-out 0.8s infinite;
+          }
+          .pixel:nth-child(7) {
+            width: 5px; height: 5px;
+            left: 30%; top: 50%;
+            animation: floatPixel 6s ease-in-out 1.2s infinite;
+          }
+          .pixel:nth-child(8) {
+            left: 70%; top: 48%;
+            animation: floatPixel 7s ease-in-out 1.8s infinite;
+          }
           .splash-content {
             position: relative;
             z-index: 10;
@@ -987,6 +1045,16 @@ function App() {
         {/* Fond de forêt en pixel art */}
         <div className="splash-overlay">
           <div className="pixel-forest" />
+          <div className="pixel-container">
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+          </div>
         </div>
 
         <div className="splash-content">
