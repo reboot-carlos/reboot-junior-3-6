@@ -1066,17 +1066,17 @@ function App() {
               }
             }}
             disabled={!language || !testType}
-            className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all"
+            className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all rounded-lg"
             style={{
-              backgroundColor: language && testType ? '#ffffff' : '#cccccc',
-              color: language && testType ? '#8b9e85' : '#888888',
-              border: '3px solid #8b9e85',
-              borderRadius: '4px',
+              backgroundColor: language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+              color: language && testType ? '#1a1a1a' : '#888888',
+              border: '2px solid white',
               cursor: language && testType ? 'pointer' : 'not-allowed',
               opacity: language && testType ? 1 : 0.6,
+              fontWeight: 'bold',
             }}
-            onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = '#f0f0f0')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : '#cccccc')}
+            onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
           >
             {language && testType ? translations[language].start : language ? "Choisir un type de test" : "Choisir une langue"}
           </button>
