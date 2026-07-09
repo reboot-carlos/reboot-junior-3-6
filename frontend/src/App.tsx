@@ -1161,32 +1161,47 @@ function App() {
       <div className="flex-1 flex flex-col rounded-none shadow-none overflow-hidden" style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité */}
-        <div className="p-3 flex justify-start gap-4 pl-10" style={{backgroundColor: '#7a8c78'}}>
+        <div className="p-3 flex justify-between gap-4 px-10" style={{backgroundColor: '#7a8c78'}}>
+          <div className="flex gap-4">
+            <button
+              onClick={() => setAiPersonality("sympa")}
+              className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
+              style={{
+                backgroundColor: aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                color: aiPersonality === "sympa" ? '#7a8c78' : '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => aiPersonality !== "sympa" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            >
+              Sympa
+            </button>
+            <button
+              onClick={() => setAiPersonality("professionnel")}
+              className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
+              style={{
+                backgroundColor: aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                color: aiPersonality === "professionnel" ? '#7a8c78' : '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => aiPersonality !== "professionnel" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            >
+              Professionnel
+            </button>
+          </div>
           <button
-            onClick={() => setAiPersonality("sympa")}
+            onClick={startChat}
             className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
             style={{
-              backgroundColor: aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-              color: aiPersonality === "sympa" ? '#7a8c78' : '#ffffff',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              color: '#ffffff',
               border: '2px solid white',
             }}
-            onMouseEnter={(e) => aiPersonality !== "sympa" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
           >
-            Sympa
-          </button>
-          <button
-            onClick={() => setAiPersonality("professionnel")}
-            className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
-            style={{
-              backgroundColor: aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-              color: aiPersonality === "professionnel" ? '#7a8c78' : '#ffffff',
-              border: '2px solid white',
-            }}
-            onMouseEnter={(e) => aiPersonality !== "professionnel" && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
-          >
-            Professionnel
+            + Nouveau profil
           </button>
         </div>
 
