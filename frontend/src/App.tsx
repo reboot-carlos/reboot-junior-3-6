@@ -924,18 +924,10 @@ function App() {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image:
-              radial-gradient(circle at 10% 30%, #2d5016 0%, #2d5016 3%, transparent 3%),
-              radial-gradient(circle at 20% 50%, #3d6b1f 0%, #3d6b1f 4%, transparent 4%),
-              radial-gradient(circle at 35% 40%, #2d5016 0%, #2d5016 3.5%, transparent 3.5%),
-              radial-gradient(circle at 50% 60%, #3d6b1f 0%, #3d6b1f 4%, transparent 4%),
-              radial-gradient(circle at 70% 45%, #2d5016 0%, #2d5016 3%, transparent 3%),
-              radial-gradient(circle at 85% 55%, #3d6b1f 0%, #3d6b1f 3.5%, transparent 3.5%),
-              radial-gradient(circle at 15% 70%, #2d5016 0%, #2d5016 4%, transparent 4%),
-              radial-gradient(circle at 60% 75%, #3d6b1f 0%, #3d6b1f 3.5%, transparent 3.5%),
-              radial-gradient(circle at 90% 70%, #2d5016 0%, #2d5016 3%, transparent 3%),
-              linear-gradient(180deg, transparent 0%, rgba(34, 139, 34, 0.2) 100%);
-            background-size: 100% 100%;
+            background-image: url('/pixel-forest.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             animation: swayLeaves 4s ease-in-out infinite, windGust 3s ease-in-out infinite;
           }
           .splash-content {
