@@ -1225,8 +1225,8 @@ function App() {
               <path
                 d="M 50 15 L 60 30 L 75 25 L 70 40 L 85 45 L 68 50 L 72 65 L 58 58 L 55 75 L 50 60 L 45 75 L 42 58 L 28 65 L 32 50 L 15 45 L 30 40 L 25 25 L 40 30 Z"
                 fill="url(#leafGradient)"
-                stroke="#6a7a68"
-                strokeWidth="0.8"
+                stroke="#ffffff"
+                strokeWidth="1.2"
               />
               {/* Nervures principales */}
               <path
