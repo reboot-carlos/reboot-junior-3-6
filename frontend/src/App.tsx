@@ -890,6 +890,8 @@ function App() {
         }}
       >
         <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
           html, body {
             margin: 0;
             padding: 0;
@@ -936,10 +938,18 @@ function App() {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
           }
           .splash-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
             animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite;
             opacity: 0;
           }
           .splash-subtitle {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.2s infinite;
             opacity: 0;
           }
@@ -989,12 +999,13 @@ function App() {
                 onClick={() => setLanguage(lang.code)}
                 className="px-4 py-2 rounded-lg transition-all text-lg font-semibold"
                 style={{
-                  backgroundColor: language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                  color: language === lang.code ? '#8b9e85' : '#ffffff',
+                  backgroundColor: language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
+                  color: language === lang.code ? '#2d5016' : '#1a1a1a',
                   border: '2px solid white',
+                  fontWeight: 'bold',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
                 title={lang.name}
               >
                 {lang.flag}
