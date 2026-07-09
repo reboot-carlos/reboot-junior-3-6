@@ -1435,32 +1435,40 @@ function App() {
                 </div>
               </div>
 
-              {/* Options A/B/C/D */}
-              {msg.isBot && msg.options && mode === "test" && testType === "qcm" && (
-                <div className="flex justify-start mt-3 gap-2 flex-wrap">
-                  {msg.options.map((option, idx) => {
-                    const letters = ['A', 'B', 'C', 'D'];
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => handleOptionClick(letters[idx])}
-                        disabled={loading}
-                        className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
-                        style={{
-                          backgroundColor: '#a8b89f',
-                          color: '#f5f5f2',
-                          border: '2px solid #8b9e85',
-                          cursor: loading ? 'not-allowed' : 'pointer',
-                          opacity: loading ? 0.6 : 1,
-                        }}
-                        onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#96a98f')}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
-                      >
-                        {letters[idx]}: {option}
-                      </button>
-                    );
-                  })}
-                </div>
+              {/* Options A/B/C/D ou Réponses libres */}
+              {msg.isBot && msg.options && mode === "test" && (
+                <>
+                  {testType !== "libres" ? (
+                    <div className="flex justify-start mt-3 gap-2 flex-wrap">
+                      {msg.options.map((option, idx) => {
+                        const letters = ['A', 'B', 'C', 'D'];
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => handleOptionClick(letters[idx])}
+                            disabled={loading}
+                            className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
+                            style={{
+                              backgroundColor: '#a8b89f',
+                              color: '#f5f5f2',
+                              border: '2px solid #8b9e85',
+                              cursor: loading ? 'not-allowed' : 'pointer',
+                              opacity: loading ? 0.6 : 1,
+                            }}
+                            onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#96a98f')}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
+                          >
+                            {letters[idx]}: {option}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="flex justify-start mt-3 text-xs opacity-80">
+                      Écris ta réponse ci-dessous (pas de limite)
+                    </div>
+                  )}
+                </>
               )}
             </div>
           ))}
