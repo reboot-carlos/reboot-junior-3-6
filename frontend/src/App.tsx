@@ -1001,36 +1001,34 @@ function App() {
             ))}
           </div>
 
-          {language && (
-            <div className="mt-8 flex gap-3 flex-wrap justify-center">
-              <button
-                onClick={() => setTestType("qcm")}
-                className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
-                style={{
-                  backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                  color: testType === "qcm" ? '#8b9e85' : '#ffffff',
-                  border: '2px solid white',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
-              >
-                QCM
-              </button>
-              <button
-                onClick={() => setTestType("libres")}
-                className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
-                style={{
-                  backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                  color: testType === "libres" ? '#8b9e85' : '#ffffff',
-                  border: '2px solid white',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
-              >
-                Réponses libres
-              </button>
-            </div>
-          )}
+          <div className="mt-6 flex gap-3 flex-wrap justify-center">
+            <button
+              onClick={() => setTestType("qcm")}
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              style={{
+                backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                color: testType === "qcm" ? '#8b9e85' : '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            >
+              QCM
+            </button>
+            <button
+              onClick={() => setTestType("libres")}
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              style={{
+                backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                color: testType === "libres" ? '#8b9e85' : '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            >
+              Réponses libres
+            </button>
+          </div>
 
           <button
             onClick={() => {
