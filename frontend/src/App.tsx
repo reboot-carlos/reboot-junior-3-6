@@ -925,8 +925,8 @@ function App() {
             width: 100%;
             height: 100%;
             background-image: url('/pixel-forest.jpg');
-            background-size: cover;
-            background-position: center;
+            background-size: 110%;
+            background-position: 30px -60px;
             background-attachment: fixed;
             animation: swayLeaves 4s ease-in-out infinite, windGust 3s ease-in-out infinite;
           }
