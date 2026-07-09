@@ -893,17 +893,12 @@ function App() {
             padding: 0;
             overflow: hidden;
           }
-          @keyframes backgroundFadeIn {
+          @keyframes fadeInSimple {
             0% { opacity: 0; }
-            30% { opacity: 1; }
             100% { opacity: 1; }
           }
-          @keyframes subtleFloat {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.05); }
-          }
           @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(20px); }
+            0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
           }
           .splash-overlay {
@@ -914,7 +909,7 @@ function App() {
             height: 100vh;
             background: rgba(0, 0, 0, 0.35);
             z-index: 5;
-            animation: backgroundFadeIn 2s ease-in-out forwards, subtleFloat 8s ease-in-out 2s infinite;
+            animation: fadeInSimple 1.2s ease-out forwards;
           }
           .splash-content {
             position: relative;
@@ -926,15 +921,15 @@ function App() {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
           }
           .splash-title {
-            animation: fadeInUp 1s ease-out 1.2s forwards;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
             opacity: 0;
           }
           .splash-subtitle {
-            animation: fadeInUp 1s ease-out 1.6s forwards;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
             opacity: 0;
           }
           .splash-languages {
-            animation: fadeInUp 1s ease-out 2s forwards;
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
             opacity: 0;
             display: flex;
             gap: 0.5rem;
@@ -943,32 +938,21 @@ function App() {
           }
           .splash-languages button {
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.2s ease;
           }
           .splash-languages button:hover {
-            transform: scale(1.15) translateY(-2px);
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+            transform: scale(1.08);
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
           }
           .splash-button {
-            animation: fadeInUp 1s ease-out 2.4s forwards, buttonGlow 2s ease-in-out 3s infinite;
+            animation: fadeInUp 0.8s ease-out 1.2s forwards;
             opacity: 0;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-            transition: transform 0.3s ease;
+            transition: all 0.2s ease;
           }
           .splash-button:hover:not(:disabled) {
-            transform: scale(1.05) translateY(-2px);
-            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
-          }
-          @keyframes buttonGlow {
-            0%, 100% { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5)); }
-            50% { filter: drop-shadow(0 4px 12px rgba(139, 158, 133, 0.6)); }
-          }
-          @keyframes titlePulse {
-            0%, 100% { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 rgba(255, 255, 255, 0); }
-            50% { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
-          }
-          .splash-title {
-            animation: fadeInUp 1s ease-out 1.2s forwards, titlePulse 3s ease-in-out 3s infinite;
+            transform: scale(1.03);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
           }
         `}</style>
 
@@ -1066,10 +1050,10 @@ function App() {
         @keyframes fall {
           0% {
             transform: translateY(0) rotateZ(0deg);
-            opacity: 0.8;
+            opacity: 0.6;
           }
           to {
-            transform: translateY(100vh) rotateZ(360deg);
+            transform: translateY(100vh) rotateZ(180deg);
             opacity: 0;
           }
         }
