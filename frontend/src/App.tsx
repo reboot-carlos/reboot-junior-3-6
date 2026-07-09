@@ -1069,7 +1069,7 @@ function App() {
             className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all rounded-lg"
             style={{
               backgroundColor: language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-              color: language && testType ? '#1a1a1a' : '#888888',
+              color: '#1a1a1a',
               border: '2px solid white',
               cursor: language && testType ? 'pointer' : 'not-allowed',
               opacity: language && testType ? 1 : 0.6,
