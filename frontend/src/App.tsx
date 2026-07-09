@@ -901,13 +901,9 @@ function App() {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
           }
-          @keyframes swayLeaves {
-            0%, 100% { transform: translateX(0px); }
-            50% { transform: translateX(2px); }
-          }
-          @keyframes windGust {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.5; }
+          @keyframes subtleHover {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2px); }
           }
           .splash-overlay {
             position: absolute;
@@ -928,7 +924,6 @@ function App() {
             background-size: 110%;
             background-position: 30px -60px;
             background-attachment: fixed;
-            animation: swayLeaves 4s ease-in-out infinite, windGust 3s ease-in-out infinite;
           }
           .splash-content {
             position: relative;
@@ -940,15 +935,15 @@ function App() {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
           }
           .splash-title {
-            animation: fadeInSimple 1s ease-out forwards;
+            animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite;
             opacity: 0;
           }
           .splash-subtitle {
-            animation: fadeInSimple 1s ease-out forwards;
+            animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.2s infinite;
             opacity: 0;
           }
           .splash-languages {
-            animation: fadeInSimple 1s ease-out forwards;
+            animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.4s infinite;
             opacity: 0;
             display: flex;
             gap: 0.5rem;
@@ -964,7 +959,7 @@ function App() {
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
           }
           .splash-button {
-            animation: fadeInSimple 1s ease-out forwards;
+            animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.6s infinite;
             opacity: 0;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
             transition: all 0.2s ease;
