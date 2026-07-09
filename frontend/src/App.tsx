@@ -890,7 +890,7 @@ function App() {
         }}
       >
         <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
           html, body {
             margin: 0;
@@ -1035,17 +1035,19 @@ function App() {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
           }
           .splash-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 3.5rem;
-            letter-spacing: 3px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
             animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite;
             opacity: 0;
           }
           .splash-subtitle {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.2s infinite;
             opacity: 0;
