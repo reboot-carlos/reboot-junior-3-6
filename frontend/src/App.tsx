@@ -1248,6 +1248,15 @@ function App() {
                           onClick={() => {
                             setProfileNumber(num);
                             setShowProfileSelector(false);
+                            setMode("menu");
+                            const testsOfProfile = history.filter(h => h.profileNumber === num);
+                            setMessages([
+                              {
+                                id: 1,
+                                text: `Bienvenue sur Profil ${num}! 🎯\n\nTu as ${testsOfProfile.length} test${testsOfProfile.length !== 1 ? 's' : ''} enregistré${testsOfProfile.length !== 1 ? 's' : ''} sur ce profil.\n\nQuel test veux-tu faire?`,
+                                isBot: true,
+                              },
+                            ]);
                           }}
                           className="flex-1 text-left"
                           style={{color: '#3d4a38'}}
