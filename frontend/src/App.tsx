@@ -315,6 +315,7 @@ function App() {
   const [selectedGroup, setSelectedGroup] = useState<"gouts" | "orientation" | null>(null);
   const [profileNumber, setProfileNumber] = useState(1);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
+  const [deletedProfiles, setDeletedProfiles] = useState<Set<number>>(new Set());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -1228,26 +1229,59 @@ function App() {
                 </button>
                 {showProfileSelector && (
                   <div
-                    className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-lg z-50 min-w-48"
+                    className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-lg z-50 min-w-56"
                     style={{backgroundColor: '#f1f5f0', border: '2px solid #8b9e85'}}
                   >
-                    {Array.from({length: profileNumber - 1}, (_, i) => i + 1).map((num) => (
-                      <button
+                    {Array.from({length: profileNumber - 1}, (_, i) => i + 1)
+                      .filter(num => !deletedProfiles.has(num))
+                      .map((num) => (
+                      <div
                         key={num}
-                        onClick={() => {
-                          setProfileNumber(num);
-                          setShowProfileSelector(false);
-                        }}
-                        className="w-full text-left px-4 py-2 hover:bg-opacity-50 transition-all border-b"
+                        className="flex items-center justify-between px-4 py-2 border-b hover:bg-opacity-50 transition-all"
                         style={{
                           backgroundColor: profileNumber === num ? '#d8e4d3' : '#eef2ec',
                           borderColor: '#8b9e85',
                           color: '#3d4a38',
                         }}
                       >
-                        Profil {num}
-                        {profileNumber === num && ' ✓'}
-                      </button>
+                        <button
+                          onClick={() => {
+                            setProfileNumber(num);
+                            setShowProfileSelector(false);
+                          }}
+                          className="flex-1 text-left"
+                          style={{color: '#3d4a38'}}
+                        >
+                          Profil {num}
+                          {profileNumber === num && ' ✓'}
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const newDeleted = new Set(deletedProfiles);
+                            newDeleted.add(num);
+                            setDeletedProfiles(newDeleted);
+                            if (profileNumber === num) {
+                              const activeProfiles = Array.from({length: profileNumber - 1}, (_, i) => i + 1)
+                                .filter(n => !newDeleted.has(n));
+                              if (activeProfiles.length > 0) {
+                                setProfileNumber(activeProfiles[activeProfiles.length - 1]);
+                              }
+                            }
+                          }}
+                          className="ml-2 px-2 py-1 rounded text-xs font-semibold transition-all"
+                          style={{
+                            backgroundColor: '#ff6b6b',
+                            color: '#ffffff',
+                            border: 'none',
+                            cursor: 'pointer',
+                          }}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ee5a5a')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff6b6b')}
+                        >
+                          Supprimer
+                        </button>
+                      </div>
                     ))}
                   </div>
                 )}
