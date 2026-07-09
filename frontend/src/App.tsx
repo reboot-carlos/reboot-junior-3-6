@@ -967,6 +967,9 @@ function App() {
           }
           .splash-languages button:hover {
             transform: scale(1.08);
+          }
+          .splash-button-hover {
+            animation: subtleHover 3s ease-in-out infinite;
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
           }
           .splash-button {
@@ -1016,12 +1019,13 @@ function App() {
           <div className="mt-6 flex gap-3 flex-wrap justify-center">
             <button
               onClick={() => setTestType("qcm")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "qcm" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
                 fontWeight: 'bold',
+                animation: 'subtleHover 3s ease-in-out 0s infinite',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
@@ -1030,12 +1034,13 @@ function App() {
             </button>
             <button
               onClick={() => setTestType("les_deux")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "les_deux" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
                 fontWeight: 'bold',
+                animation: 'subtleHover 3s ease-in-out 0.2s infinite',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
@@ -1044,12 +1049,13 @@ function App() {
             </button>
             <button
               onClick={() => setTestType("libres")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "libres" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
                 fontWeight: 'bold',
+                animation: 'subtleHover 3s ease-in-out 0.4s infinite',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
@@ -1074,6 +1080,7 @@ function App() {
               cursor: language && testType ? 'pointer' : 'not-allowed',
               opacity: language && testType ? 1 : 0.6,
               fontWeight: 'bold',
+              animation: language && testType ? 'subtleHover 3s ease-in-out 0.6s infinite' : 'none',
             }}
             onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
