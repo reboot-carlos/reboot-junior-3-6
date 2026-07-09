@@ -1132,6 +1132,7 @@ function App() {
       </div>
 
       {/* Sidebar historique */}
+      {!showSplash && (
       <div className="w-64 border-r-4 flex flex-col overflow-hidden" style={{backgroundColor: '#8b9e85', borderColor: '#7a8c78'}}>
         <div className="p-4 border-b-4" style={{borderColor: '#7a8c78'}}>
           <h2 className="font-bold text-lg text-white">{language && translations[language].history}</h2>
@@ -1207,8 +1208,9 @@ function App() {
           {language && translations[language].clearHistory}
         </button>
       </div>
+      )}
 
-      <div className="flex-1 flex flex-col rounded-none shadow-none overflow-hidden" style={{backgroundColor: '#f1f5f0'}}>
+      <div className={`${!showSplash ? 'flex-1' : 'w-full'} flex flex-col rounded-none shadow-none overflow-hidden`} style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité */}
         <div className="p-3 flex gap-4 pl-10" style={{backgroundColor: '#7a8c78'}}>
