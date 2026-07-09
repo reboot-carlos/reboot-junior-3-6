@@ -859,6 +859,8 @@ function App() {
           position: 'fixed',
           top: 0,
           left: 0,
+          margin: 0,
+          padding: 0,
           backgroundImage: 'url(https://www.dessinoupeinture.fr/wp-content/uploads/2021/07/PAYSAGE-JOUR17.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -867,6 +869,11 @@ function App() {
         }}
       >
         <style>{`
+          html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+          }
           @keyframes backgroundFadeIn {
             0% { opacity: 0; }
             30% { opacity: 1; }
