@@ -1161,7 +1161,7 @@ function App() {
       <div className="flex-1 flex flex-col rounded-none shadow-none overflow-hidden" style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité */}
-        <div className="p-3 flex justify-between gap-4 px-10" style={{backgroundColor: '#7a8c78'}}>
+        <div className="p-3 flex gap-4 pl-10" style={{backgroundColor: '#7a8c78'}}>
           <div className="flex gap-4">
             <button
               onClick={() => setAiPersonality("sympa")}
