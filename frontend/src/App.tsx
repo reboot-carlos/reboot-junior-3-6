@@ -54,21 +54,17 @@ const CATEGORY_INTROS: {[key: string]: {[key: string]: string}} = {
   },
 };
 
-const TEST_CATEGORIES_BASE: TestCategory[] = [
-  { id: "alimentation", name: "Alimentation", description: "Tes habitudes et préférences alimentaires" },
-  { id: "orientation", name: "Orientation", description: "Ton orientation professionnelle et scolaire" },
-  { id: "culturel", name: "Culturel", description: "Tes goûts et préférences culturels" },
-  { id: "leadership", name: "Leadership", description: "Ton style de leader et influence" },
-  { id: "creativite", name: "Créativité", description: "Ton niveau de créativité et innovation" },
-  { id: "stress", name: "Gestion du stress", description: "Comment tu gères le stress et l'anxiété" },
+const TEST_CATEGORIES_GOUTS: TestCategory[] = [
   { id: "mode", name: "Mode", description: "Ton style de mode et préférences vestimentaires" },
-  { id: "cinema", name: "Cinéma", description: "Ton genre de film et style cinématographique préféré" },
-  { id: "objets", name: "Objets", description: "Tes goûts pour les objets et accessoires" },
-  { id: "couleurs", name: "Couleurs", description: "Tes préférences de couleurs favorites" },
   { id: "animaux", name: "Animaux", description: "Tes animaux préférés et affinités animalières" },
+  { id: "alimentation", name: "Alimentation", description: "Tes habitudes et préférences alimentaires" },
+  { id: "couleurs", name: "Couleurs", description: "Tes préférences de couleurs favorites" },
+  { id: "objets", name: "Objets", description: "Tes goûts pour les objets et accessoires" },
+];
+
+const TEST_CATEGORIES_ORIENTATION: TestCategory[] = [
   { id: "mbti", name: "MBTI", description: "Découvre ton type de personnalité parmi les 16" },
-  { id: "lieux_batiments", name: "Lieux et bâtiments", description: "Tes préférences pour les lieux et les styles architecturaux" },
-  { id: "sport", name: "Sport", description: "Tes préférences sportives et d'activités physiques" },
+  { id: "orientation", name: "Orientation", description: "Ton orientation professionnelle et scolaire" },
 ];
 
 const CATEGORIES_TRANSLATIONS: {[key: string]: {[key: string]: {name: string, description: string}}} = {
@@ -313,6 +309,7 @@ function App() {
   const [_hkoData, setHkoData] = useState<{temp: number, humidity: number} | null>(null);
   const [_location, setLocation] = useState<string | null>(null);
   const [aiPersonality, setAiPersonality] = useState<"sympa" | "professionnel">("sympa");
+  const [selectedGroup, setSelectedGroup] = useState<"gouts" | "orientation" | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -564,6 +561,7 @@ function App() {
     setQuestionIndex(0);
     setAnswers([]);
     setQuestions([]);
+    setSelectedGroup(null);
     setMessages([
       {
         id: 1,
@@ -1215,31 +1213,135 @@ function App() {
             </div>
           ))}
 
-          {mode === "menu" && messages.length === 1 && (
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              {TEST_CATEGORIES_BASE.map((category) => {
-                const translated = language && CATEGORIES_TRANSLATIONS[language] ? CATEGORIES_TRANSLATIONS[language][category.id] : category;
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => handleCategoryClick({...category, name: translated.name, description: translated.description})}
-                    disabled={loading}
-                    className="px-4 py-3 rounded-lg text-sm font-semibold transition-all"
-                    style={{
-                      backgroundColor: '#d8e4d3',
-                      color: '#3d4a38',
-                      border: '2px solid #8b9e85',
-                      cursor: loading ? 'not-allowed' : 'pointer',
-                      opacity: loading ? 0.6 : 1,
-                    }}
-                    onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#c8dcc5')}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d8e4d3')}
-                  >
-                    <div className="font-bold">{translated.name}</div>
-                    <div className="text-xs" style={{color: '#5a6a55'}}>{translated.description}</div>
-                  </button>
-                );
-              })}
+          {mode === "menu" && messages.length === 1 && !selectedGroup && (
+            <div className="grid grid-cols-1 gap-3 mt-4">
+              <button
+                onClick={() => setSelectedGroup("gouts")}
+                disabled={loading}
+                className="px-4 py-3 rounded-lg text-sm font-semibold transition-all"
+                style={{
+                  backgroundColor: '#d8e4d3',
+                  color: '#3d4a38',
+                  border: '2px solid #8b9e85',
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: loading ? 0.6 : 1,
+                }}
+                onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#c8dcc5')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d8e4d3')}
+              >
+                <div className="font-bold">
+                  {language === 'fr' ? 'Tes goûts' : language === 'en' ? 'Your tastes' : language === 'de' ? 'Deine Vorlieben' : language === 'es' ? 'Tus gustos' : language === 'it' ? 'I tuoi gusti' : language === 'zh' ? '你的品味' : language === 'ru' ? 'Твои вкусы' : language === 'pt' ? 'Seus gostos' : language === 'he' ? 'הטעמים שלך' : language === 'el' ? 'Τα γούστα σου' : 'Tes goûts'}
+                </div>
+                <div className="text-xs" style={{color: '#5a6a55'}}>Mode, Animaux, Alimentation, Couleurs, Objets</div>
+              </button>
+
+              <button
+                onClick={() => setSelectedGroup("orientation")}
+                disabled={loading}
+                className="px-4 py-3 rounded-lg text-sm font-semibold transition-all"
+                style={{
+                  backgroundColor: '#d8e4d3',
+                  color: '#3d4a38',
+                  border: '2px solid #8b9e85',
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: loading ? 0.6 : 1,
+                }}
+                onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#c8dcc5')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d8e4d3')}
+              >
+                <div className="font-bold">
+                  {language === 'fr' ? 'Ton orientation' : language === 'en' ? 'Your orientation' : language === 'de' ? 'Deine Orientierung' : language === 'es' ? 'Tu orientación' : language === 'it' ? 'Il tuo orientamento' : language === 'zh' ? '你的方向' : language === 'ru' ? 'Твоя ориентация' : language === 'pt' ? 'Sua orientação' : language === 'he' ? 'הכיוון שלך' : language === 'el' ? 'Ο προσανατολισμός σας' : 'Ton orientation'}
+                </div>
+                <div className="text-xs" style={{color: '#5a6a55'}}>MBTI, Orientation</div>
+              </button>
+            </div>
+          )}
+
+          {mode === "menu" && messages.length === 1 && selectedGroup === "gouts" && (
+            <div className="space-y-3 mt-4">
+              <button
+                onClick={() => setSelectedGroup(null)}
+                className="px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+                style={{
+                  backgroundColor: '#a8b89f',
+                  color: '#f5f5f2',
+                  border: '2px solid #8b9e85',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#96a98f')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
+              >
+                ← {language === 'fr' ? 'Retour' : language === 'en' ? 'Back' : language === 'de' ? 'Zurück' : language === 'es' ? 'Atrás' : 'Retour'}
+              </button>
+              <div className="grid grid-cols-2 gap-3">
+                {TEST_CATEGORIES_GOUTS.map((category) => {
+                  const translated = language && CATEGORIES_TRANSLATIONS[language] ? CATEGORIES_TRANSLATIONS[language][category.id] : category;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => handleCategoryClick({...category, name: translated.name, description: translated.description})}
+                      disabled={loading}
+                      className="px-4 py-3 rounded-lg text-sm font-semibold transition-all"
+                      style={{
+                        backgroundColor: '#d8e4d3',
+                        color: '#3d4a38',
+                        border: '2px solid #8b9e85',
+                        cursor: loading ? 'not-allowed' : 'pointer',
+                        opacity: loading ? 0.6 : 1,
+                      }}
+                      onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#c8dcc5')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d8e4d3')}
+                    >
+                      <div className="font-bold">{translated.name}</div>
+                      <div className="text-xs" style={{color: '#5a6a55'}}>{translated.description}</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {mode === "menu" && messages.length === 1 && selectedGroup === "orientation" && (
+            <div className="space-y-3 mt-4">
+              <button
+                onClick={() => setSelectedGroup(null)}
+                className="px-4 py-2 rounded-lg text-sm font-semibold transition-all"
+                style={{
+                  backgroundColor: '#a8b89f',
+                  color: '#f5f5f2',
+                  border: '2px solid #8b9e85',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#96a98f')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
+              >
+                ← {language === 'fr' ? 'Retour' : language === 'en' ? 'Back' : language === 'de' ? 'Zurück' : language === 'es' ? 'Atrás' : 'Retour'}
+              </button>
+              <div className="grid grid-cols-2 gap-3">
+                {TEST_CATEGORIES_ORIENTATION.map((category) => {
+                  const translated = language && CATEGORIES_TRANSLATIONS[language] ? CATEGORIES_TRANSLATIONS[language][category.id] : category;
+                  return (
+                    <button
+                      key={category.id}
+                      onClick={() => handleCategoryClick({...category, name: translated.name, description: translated.description})}
+                      disabled={loading}
+                      className="px-4 py-3 rounded-lg text-sm font-semibold transition-all"
+                      style={{
+                        backgroundColor: '#d8e4d3',
+                        color: '#3d4a38',
+                        border: '2px solid #8b9e85',
+                        cursor: loading ? 'not-allowed' : 'pointer',
+                        opacity: loading ? 0.6 : 1,
+                      }}
+                      onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#c8dcc5')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#d8e4d3')}
+                    >
+                      <div className="font-bold">{translated.name}</div>
+                      <div className="text-xs" style={{color: '#5a6a55'}}>{translated.description}</div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
 
