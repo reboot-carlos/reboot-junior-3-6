@@ -1224,7 +1224,7 @@ function App() {
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)')}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
                 >
-                  📁 Mes profils ({profileNumber - 1})
+                  ({profileNumber - 1})
                 </button>
                 {showProfileSelector && (
                   <div
