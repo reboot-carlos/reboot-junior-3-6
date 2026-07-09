@@ -304,7 +304,7 @@ function App() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [_questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState<any[]>([]);
-  const [history, setHistory] = useState<Array<{id: number, name: string, date: string, categoryId: string, questionIndex: number, answers: string[], questions: any[]}>>([]);
+  const [history, setHistory] = useState<Array<{id: number, name: string, date: string, categoryId: string, questionIndex: number, answers: string[], questions: any[], profileNumber: number}>>([]);
   const [showSplash, setShowSplash] = useState(true);
   const [weather, setWeather] = useState<Weather | null>(null);
   const [currentDate, setCurrentDate] = useState("");
@@ -313,6 +313,7 @@ function App() {
   const [_location, setLocation] = useState<string | null>(null);
   const [aiPersonality, setAiPersonality] = useState<"sympa" | "professionnel">("sympa");
   const [selectedGroup, setSelectedGroup] = useState<"gouts" | "orientation" | null>(null);
+  const [profileNumber, setProfileNumber] = useState(1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -565,6 +566,7 @@ function App() {
     setAnswers([]);
     setQuestions([]);
     setSelectedGroup(null);
+    setProfileNumber((prev) => prev + 1);
     setMessages([
       {
         id: 1,
@@ -731,6 +733,7 @@ function App() {
           questionIndex: 0,
           answers: [],
           questions: data.questions,
+          profileNumber: profileNumber,
         },
       ]);
 
@@ -1116,7 +1119,10 @@ function App() {
                 className="w-full p-3 rounded-lg text-white text-sm transition-all text-left hover:brightness-110"
                 style={{backgroundColor: 'rgba(255, 255, 255, 0.15)'}}
               >
-                <div className="font-semibold">{item.name}</div>
+                <div className="flex justify-between items-center">
+                  <div className="font-semibold">{item.name}</div>
+                  <div className="text-xs opacity-80 bg-white bg-opacity-20 px-2 py-1 rounded">Profil {item.profileNumber}</div>
+                </div>
                 <div className="text-xs opacity-70">{item.date}</div>
                 <div className="text-xs opacity-80 mt-1">
                   {item.questionIndex < 10
