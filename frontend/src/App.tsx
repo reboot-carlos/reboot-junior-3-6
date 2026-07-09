@@ -986,6 +986,42 @@ function App() {
             left: 70%; top: 48%;
             animation: floatPixel 7s ease-in-out 1.8s infinite;
           }
+          .pixel:nth-child(9) {
+            width: 5px; height: 5px;
+            left: 20%; top: 30%;
+            animation: floatPixel 6.5s ease-in-out 0.3s infinite;
+          }
+          .pixel:nth-child(10) {
+            left: 40%; top: 55%;
+            animation: floatPixel 7.5s ease-in-out 2.2s infinite;
+          }
+          .pixel:nth-child(11) {
+            width: 6px; height: 6px;
+            left: 60%; top: 32%;
+            animation: floatPixel 6s ease-in-out 0.7s infinite;
+          }
+          .pixel:nth-child(12) {
+            left: 80%; top: 44%;
+            animation: floatPixel 7s ease-in-out 1.4s infinite;
+          }
+          .pixel:nth-child(13) {
+            width: 5px; height: 5px;
+            left: 15%; top: 52%;
+            animation: floatPixel 6.5s ease-in-out 1.1s infinite;
+          }
+          .pixel:nth-child(14) {
+            left: 50%; top: 28%;
+            animation: floatPixel 8s ease-in-out 2.5s infinite;
+          }
+          .pixel:nth-child(15) {
+            width: 6px; height: 6px;
+            left: 85%; top: 52%;
+            animation: floatPixel 7.5s ease-in-out 1.6s infinite;
+          }
+          .pixel:nth-child(16) {
+            left: 35%; top: 30%;
+            animation: floatPixel 6s ease-in-out 0.9s infinite;
+          }
           .splash-content {
             position: relative;
             z-index: 10;
@@ -1046,6 +1082,14 @@ function App() {
         <div className="splash-overlay">
           <div className="pixel-forest" />
           <div className="pixel-container">
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
+            <div className="pixel" />
             <div className="pixel" />
             <div className="pixel" />
             <div className="pixel" />
@@ -1143,11 +1187,12 @@ function App() {
             className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all rounded-lg splash-button-hover"
             style={{
               backgroundColor: language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
-              color: language && testType ? '#2d5016' : '#1a1a1a',
+              color: '#1a1a1a',
               border: '2px solid white',
               cursor: language && testType ? 'pointer' : 'not-allowed',
               fontWeight: 'bold',
               animation: language && testType ? 'subtleHover 3s ease-in-out 0.6s infinite' : 'none',
+              opacity: language && testType ? 1 : 0.6,
             }}
             onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.5)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
