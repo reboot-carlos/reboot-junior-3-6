@@ -901,15 +901,42 @@ function App() {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
           }
+          @keyframes swayLeaves {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(2px); }
+          }
+          @keyframes windGust {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+          }
           .splash-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
+            background: linear-gradient(180deg, #87ceeb 0%, #90ee90 50%, #228b22 100%);
             z-index: 5;
             animation: fadeInSimple 1.2s ease-out forwards;
+            overflow: hidden;
+          }
+          .pixel-forest {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+              radial-gradient(circle at 10% 30%, #2d5016 0%, #2d5016 3%, transparent 3%),
+              radial-gradient(circle at 20% 50%, #3d6b1f 0%, #3d6b1f 4%, transparent 4%),
+              radial-gradient(circle at 35% 40%, #2d5016 0%, #2d5016 3.5%, transparent 3.5%),
+              radial-gradient(circle at 50% 60%, #3d6b1f 0%, #3d6b1f 4%, transparent 4%),
+              radial-gradient(circle at 70% 45%, #2d5016 0%, #2d5016 3%, transparent 3%),
+              radial-gradient(circle at 85% 55%, #3d6b1f 0%, #3d6b1f 3.5%, transparent 3.5%),
+              radial-gradient(circle at 15% 70%, #2d5016 0%, #2d5016 4%, transparent 4%),
+              radial-gradient(circle at 60% 75%, #3d6b1f 0%, #3d6b1f 3.5%, transparent 3.5%),
+              radial-gradient(circle at 90% 70%, #2d5016 0%, #2d5016 3%, transparent 3%),
+              linear-gradient(180deg, transparent 0%, rgba(34, 139, 34, 0.2) 100%);
+            background-size: 100% 100%;
+            animation: swayLeaves 4s ease-in-out infinite, windGust 3s ease-in-out infinite;
           }
           .splash-content {
             position: relative;
@@ -921,15 +948,15 @@ function App() {
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
           }
           .splash-title {
-            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+            animation: fadeInSimple 1s ease-out forwards;
             opacity: 0;
           }
           .splash-subtitle {
-            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+            animation: fadeInSimple 1s ease-out forwards;
             opacity: 0;
           }
           .splash-languages {
-            animation: fadeInUp 0.8s ease-out 0.9s forwards;
+            animation: fadeInSimple 1s ease-out forwards;
             opacity: 0;
             display: flex;
             gap: 0.5rem;
@@ -945,7 +972,7 @@ function App() {
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
           }
           .splash-button {
-            animation: fadeInUp 0.8s ease-out 1.2s forwards;
+            animation: fadeInSimple 1s ease-out forwards;
             opacity: 0;
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
             transition: all 0.2s ease;
@@ -956,8 +983,10 @@ function App() {
           }
         `}</style>
 
-        {/* Overlay pour augmenter le contraste et animer légèrement */}
-        <div className="splash-overlay" />
+        {/* Fond de forêt en pixel art */}
+        <div className="splash-overlay">
+          <div className="pixel-forest" />
+        </div>
 
         <div className="splash-content">
           <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testicrousti</h1>
