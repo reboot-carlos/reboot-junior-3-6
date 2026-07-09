@@ -766,12 +766,14 @@ function App() {
 
   const handleTestAnswer = async (message: string) => {
     const answer = message.toUpperCase();
-    if (!["A", "B", "C", "D"].includes(answer)) {
+    const isValidAnswer = ["A", "B", "C", "D"].includes(answer) || (testType === "les_deux" && message.trim().length > 0);
+
+    if (!isValidAnswer) {
       setMessages((prev) => [
         ...prev,
         {
           id: prev.length + 1,
-          text: "Réponds par A, B, C ou D stp!",
+          text: testType === "les_deux" ? "Réponds par A, B, C, D ou écris une réponse libre!" : "Réponds par A, B, C ou D stp!",
           isBot: true,
         },
       ]);
@@ -1661,12 +1663,12 @@ function App() {
               />
               <button
                 onClick={handleSendMessage}
-                disabled={!['A', 'B', 'C', 'D'].includes(input) || loading}
+                disabled={(testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading}
                 className="px-5 py-3 font-semibold rounded-lg transition-all text-white"
                 style={{
                   backgroundColor: '#8b9e85',
-                  opacity: !['A', 'B', 'C', 'D'].includes(input) || loading ? 0.6 : 1,
-                  cursor: !['A', 'B', 'C', 'D'].includes(input) || loading ? 'not-allowed' : 'pointer',
+                  opacity: ((testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 0.6 : 1,
+                  cursor: ((testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 'not-allowed' : 'pointer',
                 }}
               >
                 Envoyer
