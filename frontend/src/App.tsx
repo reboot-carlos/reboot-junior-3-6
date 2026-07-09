@@ -316,6 +316,7 @@ function App() {
   const [profileNumber, setProfileNumber] = useState(1);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
   const [deletedProfiles, setDeletedProfiles] = useState<Set<number>>(new Set());
+  const [testType, setTestType] = useState<"qcm" | "libres" | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -1000,27 +1001,58 @@ function App() {
             ))}
           </div>
 
+          {language && (
+            <div className="mt-8 flex gap-3 flex-wrap justify-center">
+              <button
+                onClick={() => setTestType("qcm")}
+                className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+                style={{
+                  backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                  color: testType === "qcm" ? '#8b9e85' : '#ffffff',
+                  border: '2px solid white',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+              >
+                QCM
+              </button>
+              <button
+                onClick={() => setTestType("libres")}
+                className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+                style={{
+                  backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                  color: testType === "libres" ? '#8b9e85' : '#ffffff',
+                  border: '2px solid white',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+              >
+                Réponses libres
+              </button>
+            </div>
+          )}
+
           <button
             onClick={() => {
-              if (language) {
+              if (language && testType) {
                 setShowSplash(false);
                 startChat();
               }
             }}
-            disabled={!language}
+            disabled={!language || !testType}
             className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all"
             style={{
-              backgroundColor: language ? '#ffffff' : '#cccccc',
-              color: language ? '#8b9e85' : '#888888',
+              backgroundColor: language && testType ? '#ffffff' : '#cccccc',
+              color: language && testType ? '#8b9e85' : '#888888',
               border: '3px solid #8b9e85',
               borderRadius: '4px',
-              cursor: language ? 'pointer' : 'not-allowed',
-              opacity: language ? 1 : 0.6,
+              cursor: language && testType ? 'pointer' : 'not-allowed',
+              opacity: language && testType ? 1 : 0.6,
             }}
-            onMouseEnter={(e) => language && (e.currentTarget.style.backgroundColor = '#f0f0f0')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language ? '#ffffff' : '#cccccc')}
+            onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = '#f0f0f0')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : '#cccccc')}
           >
-            {language ? translations[language].start : "Choisir une langue"}
+            {language && testType ? translations[language].start : language ? "Choisir un type de test" : "Choisir une langue"}
           </button>
         </div>
       </div>
@@ -1393,32 +1425,65 @@ function App() {
                 </div>
               </div>
 
-              {/* Options A/B/C/D */}
+              {/* Options A/B/C/D ou Réponses libres */}
               {msg.isBot && msg.options && mode === "test" && (
-                <div className="flex justify-start mt-3 gap-2 flex-wrap">
-                  {msg.options.map((option, idx) => {
-                    const letters = ['A', 'B', 'C', 'D'];
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => handleOptionClick(letters[idx])}
-                        disabled={loading}
-                        className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
+                <>
+                  {testType === "qcm" ? (
+                    <div className="flex justify-start mt-3 gap-2 flex-wrap">
+                      {msg.options.map((option, idx) => {
+                        const letters = ['A', 'B', 'C', 'D'];
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => handleOptionClick(letters[idx])}
+                            disabled={loading}
+                            className="px-3 py-2 rounded-lg text-sm font-semibold transition-all"
+                            style={{
+                              backgroundColor: '#a8b89f',
+                              color: '#f5f5f2',
+                              border: '2px solid #8b9e85',
+                              cursor: loading ? 'not-allowed' : 'pointer',
+                              opacity: loading ? 0.6 : 1,
+                            }}
+                            onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#96a98f')}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
+                          >
+                            {letters[idx]}: {option}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="flex justify-start mt-3 gap-2">
+                      <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                        placeholder="Écris ta réponse..."
+                        className="flex-1 px-4 py-2 rounded-lg text-sm focus:outline-none transition-all"
                         style={{
-                          backgroundColor: '#a8b89f',
-                          color: '#f5f5f2',
+                          backgroundColor: '#f1f5f0',
                           border: '2px solid #8b9e85',
-                          cursor: loading ? 'not-allowed' : 'pointer',
-                          opacity: loading ? 0.6 : 1,
+                          color: '#3d4a38',
+                          maxWidth: '400px',
                         }}
-                        onMouseEnter={(e) => !loading && (e.currentTarget.style.backgroundColor = '#96a98f')}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a8b89f')}
+                      />
+                      <button
+                        onClick={handleSendMessage}
+                        disabled={!input.trim() || loading}
+                        className="px-4 py-2 font-semibold rounded-lg transition-all text-white"
+                        style={{
+                          backgroundColor: input.trim() && !loading ? '#8b9e85' : '#cccccc',
+                          cursor: input.trim() && !loading ? 'pointer' : 'not-allowed',
+                          opacity: input.trim() && !loading ? 1 : 0.6,
+                        }}
                       >
-                        {letters[idx]}: {option}
+                        Envoyer
                       </button>
-                    );
-                  })}
-                </div>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           ))}
