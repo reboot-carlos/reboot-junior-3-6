@@ -1018,12 +1018,13 @@ function App() {
               onClick={() => setTestType("qcm")}
               className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
               style={{
-                backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                color: testType === "qcm" ? '#8b9e85' : '#ffffff',
+                backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
+                color: testType === "qcm" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
+                fontWeight: 'bold',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
               QCM
             </button>
@@ -1031,12 +1032,13 @@ function App() {
               onClick={() => setTestType("les_deux")}
               className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
               style={{
-                backgroundColor: testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                color: testType === "les_deux" ? '#8b9e85' : '#ffffff',
+                backgroundColor: testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
+                color: testType === "les_deux" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
+                fontWeight: 'bold',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
               Les deux
             </button>
@@ -1044,12 +1046,13 @@ function App() {
               onClick={() => setTestType("libres")}
               className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
               style={{
-                backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
-                color: testType === "libres" ? '#8b9e85' : '#ffffff',
+                backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
+                color: testType === "libres" ? '#2d5016' : '#1a1a1a',
                 border: '2px solid white',
+                fontWeight: 'bold',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
               Réponses libres
             </button>
