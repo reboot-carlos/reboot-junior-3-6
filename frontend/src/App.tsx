@@ -930,9 +930,9 @@ function App() {
           }
           @keyframes floatPixel {
             0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
-            25% { transform: translateY(-8px) translateX(4px); opacity: 0.8; }
-            50% { transform: translateY(-16px) translateX(0px); opacity: 1; }
-            75% { transform: translateY(-8px) translateX(-4px); opacity: 0.8; }
+            25% { transform: translateY(-12px) translateX(8px); opacity: 0.8; }
+            50% { transform: translateY(-20px) translateX(12px); opacity: 1; }
+            75% { transform: translateY(-12px) translateX(6px); opacity: 0.8; }
           }
           .pixel-container {
             position: absolute;
@@ -947,64 +947,64 @@ function App() {
             position: absolute;
             width: 4px;
             height: 4px;
-            box-shadow: 0 0 3px rgba(255, 255, 150, 0.6);
+            box-shadow: 0 0 3px rgba(100, 200, 100, 0.6);
           }
           .pixel:nth-child(4n+1) {
-            background-color: rgba(255, 255, 200, 0.8);
-            box-shadow: 0 0 4px rgba(255, 255, 150, 0.7);
+            background-color: rgba(46, 139, 87, 0.75);
+            box-shadow: 0 0 3px rgba(46, 139, 87, 0.6);
           }
           .pixel:nth-child(4n+2) {
-            background-color: rgba(144, 238, 144, 0.7);
+            background-color: rgba(144, 238, 144, 0.75);
             box-shadow: 0 0 3px rgba(144, 238, 144, 0.6);
           }
           .pixel:nth-child(4n+3) {
-            background-color: rgba(255, 215, 100, 0.75);
-            box-shadow: 0 0 4px rgba(255, 215, 100, 0.65);
+            background-color: rgba(173, 255, 47, 0.7);
+            box-shadow: 0 0 3px rgba(173, 255, 47, 0.55);
           }
           .pixel:nth-child(4n) {
-            background-color: rgba(173, 255, 47, 0.7);
-            box-shadow: 0 0 3px rgba(173, 255, 47, 0.6);
+            background-color: rgba(102, 205, 170, 0.7);
+            box-shadow: 0 0 3px rgba(102, 205, 170, 0.55);
           }
-          .pixel:nth-child(1) { left: 5%; top: 20%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out infinite; }
-          .pixel:nth-child(2) { left: 10%; top: 35%; animation: floatPixel 7s ease-in-out 0.2s infinite; }
-          .pixel:nth-child(3) { left: 15%; top: 25%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.4s infinite; }
-          .pixel:nth-child(4) { left: 20%; top: 45%; animation: floatPixel 7.5s ease-in-out 0.6s infinite; }
-          .pixel:nth-child(5) { left: 25%; top: 30%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.8s infinite; }
-          .pixel:nth-child(6) { left: 30%; top: 50%; animation: floatPixel 8s ease-in-out 1s infinite; }
-          .pixel:nth-child(7) { left: 35%; top: 28%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.2s infinite; }
-          .pixel:nth-child(8) { left: 40%; top: 40%; animation: floatPixel 7s ease-in-out 1.4s infinite; }
-          .pixel:nth-child(9) { left: 45%; top: 35%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.6s infinite; }
-          .pixel:nth-child(10) { left: 50%; top: 55%; animation: floatPixel 7.5s ease-in-out 1.8s infinite; }
-          .pixel:nth-child(11) { left: 55%; top: 32%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 2s infinite; }
-          .pixel:nth-child(12) { left: 60%; top: 48%; animation: floatPixel 7s ease-in-out 0.3s infinite; }
-          .pixel:nth-child(13) { left: 65%; top: 25%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.5s infinite; }
-          .pixel:nth-child(14) { left: 70%; top: 42%; animation: floatPixel 8s ease-in-out 0.7s infinite; }
-          .pixel:nth-child(15) { left: 75%; top: 38%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.9s infinite; }
-          .pixel:nth-child(16) { left: 80%; top: 52%; animation: floatPixel 7.5s ease-in-out 1.1s infinite; }
-          .pixel:nth-child(17) { left: 85%; top: 30%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.3s infinite; }
-          .pixel:nth-child(18) { left: 90%; top: 44%; animation: floatPixel 7s ease-in-out 1.5s infinite; }
-          .pixel:nth-child(19) { left: 95%; top: 28%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.7s infinite; }
-          .pixel:nth-child(20) { left: 8%; top: 48%; animation: floatPixel 7.5s ease-in-out 1.9s infinite; }
-          .pixel:nth-child(21) { left: 12%; top: 55%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.1s infinite; }
-          .pixel:nth-child(22) { left: 18%; top: 32%; animation: floatPixel 7s ease-in-out 0.3s infinite; }
-          .pixel:nth-child(23) { left: 22%; top: 52%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.5s infinite; }
-          .pixel:nth-child(24) { left: 28%; top: 28%; animation: floatPixel 8s ease-in-out 0.7s infinite; }
-          .pixel:nth-child(25) { left: 32%; top: 42%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.9s infinite; }
-          .pixel:nth-child(26) { left: 38%; top: 50%; animation: floatPixel 7.5s ease-in-out 1.1s infinite; }
-          .pixel:nth-child(27) { left: 42%; top: 30%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.3s infinite; }
-          .pixel:nth-child(28) { left: 48%; top: 45%; animation: floatPixel 7s ease-in-out 1.5s infinite; }
-          .pixel:nth-child(29) { left: 52%; top: 35%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.7s infinite; }
-          .pixel:nth-child(30) { left: 58%; top: 55%; animation: floatPixel 7.5s ease-in-out 1.9s infinite; }
-          .pixel:nth-child(31) { left: 62%; top: 32%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.2s infinite; }
-          .pixel:nth-child(32) { left: 68%; top: 48%; animation: floatPixel 7s ease-in-out 0.4s infinite; }
-          .pixel:nth-child(33) { left: 72%; top: 25%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.6s infinite; }
-          .pixel:nth-child(34) { left: 78%; top: 42%; animation: floatPixel 8s ease-in-out 0.8s infinite; }
-          .pixel:nth-child(35) { left: 82%; top: 38%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1s infinite; }
-          .pixel:nth-child(36) { left: 88%; top: 52%; animation: floatPixel 7.5s ease-in-out 1.2s infinite; }
-          .pixel:nth-child(37) { left: 92%; top: 30%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.4s infinite; }
-          .pixel:nth-child(38) { left: 7%; top: 42%; animation: floatPixel 7s ease-in-out 1.6s infinite; }
-          .pixel:nth-child(39) { left: 14%; top: 50%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.8s infinite; }
-          .pixel:nth-child(40) { left: 97%; top: 48%; animation: floatPixel 7.5s ease-in-out 2s infinite; }
+          .pixel:nth-child(1) { left: 5%; top: 15%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out infinite; }
+          .pixel:nth-child(2) { left: 10%; top: 22%; animation: floatPixel 7s ease-in-out 0.2s infinite; }
+          .pixel:nth-child(3) { left: 15%; top: 18%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.4s infinite; }
+          .pixel:nth-child(4) { left: 20%; top: 28%; animation: floatPixel 7.5s ease-in-out 0.6s infinite; }
+          .pixel:nth-child(5) { left: 25%; top: 20%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.8s infinite; }
+          .pixel:nth-child(6) { left: 30%; top: 32%; animation: floatPixel 8s ease-in-out 1s infinite; }
+          .pixel:nth-child(7) { left: 35%; top: 19%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.2s infinite; }
+          .pixel:nth-child(8) { left: 40%; top: 25%; animation: floatPixel 7s ease-in-out 1.4s infinite; }
+          .pixel:nth-child(9) { left: 45%; top: 22%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.6s infinite; }
+          .pixel:nth-child(10) { left: 50%; top: 35%; animation: floatPixel 7.5s ease-in-out 1.8s infinite; }
+          .pixel:nth-child(11) { left: 55%; top: 20%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 2s infinite; }
+          .pixel:nth-child(12) { left: 60%; top: 30%; animation: floatPixel 7s ease-in-out 0.3s infinite; }
+          .pixel:nth-child(13) { left: 65%; top: 17%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.5s infinite; }
+          .pixel:nth-child(14) { left: 70%; top: 26%; animation: floatPixel 8s ease-in-out 0.7s infinite; }
+          .pixel:nth-child(15) { left: 75%; top: 24%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.9s infinite; }
+          .pixel:nth-child(16) { left: 80%; top: 34%; animation: floatPixel 7.5s ease-in-out 1.1s infinite; }
+          .pixel:nth-child(17) { left: 85%; top: 19%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.3s infinite; }
+          .pixel:nth-child(18) { left: 90%; top: 28%; animation: floatPixel 7s ease-in-out 1.5s infinite; }
+          .pixel:nth-child(19) { left: 95%; top: 16%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.7s infinite; }
+          .pixel:nth-child(20) { left: 8%; top: 31%; animation: floatPixel 7.5s ease-in-out 1.9s infinite; }
+          .pixel:nth-child(21) { left: 12%; top: 35%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.1s infinite; }
+          .pixel:nth-child(22) { left: 18%; top: 21%; animation: floatPixel 7s ease-in-out 0.3s infinite; }
+          .pixel:nth-child(23) { left: 22%; top: 33%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.5s infinite; }
+          .pixel:nth-child(24) { left: 28%; top: 17%; animation: floatPixel 8s ease-in-out 0.7s infinite; }
+          .pixel:nth-child(25) { left: 32%; top: 27%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.9s infinite; }
+          .pixel:nth-child(26) { left: 38%; top: 32%; animation: floatPixel 7.5s ease-in-out 1.1s infinite; }
+          .pixel:nth-child(27) { left: 42%; top: 19%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.3s infinite; }
+          .pixel:nth-child(28) { left: 48%; top: 29%; animation: floatPixel 7s ease-in-out 1.5s infinite; }
+          .pixel:nth-child(29) { left: 52%; top: 23%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.7s infinite; }
+          .pixel:nth-child(30) { left: 58%; top: 36%; animation: floatPixel 7.5s ease-in-out 1.9s infinite; }
+          .pixel:nth-child(31) { left: 62%; top: 20%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 0.2s infinite; }
+          .pixel:nth-child(32) { left: 68%; top: 31%; animation: floatPixel 7s ease-in-out 0.4s infinite; }
+          .pixel:nth-child(33) { left: 72%; top: 16%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 0.6s infinite; }
+          .pixel:nth-child(34) { left: 78%; top: 26%; animation: floatPixel 8s ease-in-out 0.8s infinite; }
+          .pixel:nth-child(35) { left: 82%; top: 24%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1s infinite; }
+          .pixel:nth-child(36) { left: 88%; top: 34%; animation: floatPixel 7.5s ease-in-out 1.2s infinite; }
+          .pixel:nth-child(37) { left: 92%; top: 19%; width: 5px; height: 5px; animation: floatPixel 6s ease-in-out 1.4s infinite; }
+          .pixel:nth-child(38) { left: 7%; top: 27%; animation: floatPixel 7s ease-in-out 1.6s infinite; }
+          .pixel:nth-child(39) { left: 14%; top: 32%; width: 6px; height: 6px; animation: floatPixel 6.5s ease-in-out 1.8s infinite; }
+          .pixel:nth-child(40) { left: 97%; top: 30%; animation: floatPixel 7.5s ease-in-out 2s infinite; }
           .splash-content {
             position: relative;
             z-index: 10;
