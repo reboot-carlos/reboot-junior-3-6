@@ -1208,9 +1208,22 @@ function App() {
         {/* En-tête */}
         <div className="p-5 border-b-4" style={{backgroundColor: '#8b9e85', background: 'linear-gradient(135deg, #8b9e85 0%, #7a8c78 100%)', borderColor: '#7a8c78'}}>
           <div className="flex items-center gap-4">
-            <div className="text-4xl w-16 h-16 flex items-center justify-center" title="Feuille de test">
-              🍃
-            </div>
+            <svg className="w-16 h-16" viewBox="0 0 100 100" title="Feuille de test">
+              <path
+                d="M50 10 Q70 30 70 50 Q70 75 50 85 Q30 75 30 50 Q30 30 50 10"
+                fill="#8b9e85"
+              />
+              <path
+                d="M50 20 Q65 35 65 50 Q65 70 50 78 Q35 70 35 50 Q35 35 50 20"
+                fill="#a8b89f"
+              />
+              <path
+                d="M50 15 L50 80 M45 35 Q35 40 30 50 M55 35 Q65 40 70 50 M45 65 Q35 60 30 50 M55 65 Q65 60 70 50"
+                stroke="#d8e4d3"
+                strokeWidth="1.5"
+                fill="none"
+              />
+            </svg>
             <div>
               <h1 className="text-2xl font-bold text-white" style={{letterSpacing: '0.5px'}}>Testicrousti</h1>
               <p className="text-sm" style={{color: '#dde5db'}}>Découvre-toi mieux</p>
