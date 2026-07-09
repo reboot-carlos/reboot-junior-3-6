@@ -1208,7 +1208,7 @@ function App() {
         {/* En-tête */}
         <div className="p-5 border-b-4" style={{backgroundColor: '#8b9e85', background: 'linear-gradient(135deg, #8b9e85 0%, #7a8c78 100%)', borderColor: '#7a8c78'}}>
           <div className="flex items-center gap-4">
-            <svg className="w-16 h-16" viewBox="0 0 100 100" title="Feuille de test">
+            <svg className="w-16 h-16" viewBox="0 0 100 100" aria-label="Feuille de test">
               <path
                 d="M50 10 Q70 30 70 50 Q70 75 50 85 Q30 75 30 50 Q30 30 50 10"
                 fill="#8b9e85"
