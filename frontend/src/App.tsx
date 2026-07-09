@@ -913,7 +913,6 @@ function App() {
             height: 100vh;
             background: linear-gradient(180deg, #87ceeb 0%, #90ee90 50%, #228b22 100%);
             z-index: 5;
-            animation: fadeInSimple 1.2s ease-out forwards;
             overflow: hidden;
           }
           .pixel-forest {
