@@ -1208,20 +1208,69 @@ function App() {
         {/* En-tête */}
         <div className="p-5 border-b-4" style={{backgroundColor: '#8b9e85', background: 'linear-gradient(135deg, #8b9e85 0%, #7a8c78 100%)', borderColor: '#7a8c78'}}>
           <div className="flex items-center gap-4">
-            <svg className="w-16 h-16" viewBox="0 0 100 100" aria-label="Feuille de test">
+            <svg className="w-16 h-16" viewBox="0 0 100 100" aria-label="Feuille d'automne">
+              <defs>
+                <radialGradient id="leafGradient" cx="50%" cy="40%">
+                  <stop offset="0%" stopColor="#9fb593" />
+                  <stop offset="100%" stopColor="#7a8c78" />
+                </radialGradient>
+              </defs>
+              {/* Forme de feuille d'érable */}
               <path
-                d="M50 10 Q70 30 70 50 Q70 75 50 85 Q30 75 30 50 Q30 30 50 10"
-                fill="#8b9e85"
+                d="M 50 15 L 60 30 L 75 25 L 70 40 L 85 45 L 68 50 L 72 65 L 58 58 L 55 75 L 50 60 L 45 75 L 42 58 L 28 65 L 32 50 L 15 45 L 30 40 L 25 25 L 40 30 Z"
+                fill="url(#leafGradient)"
+                stroke="#6a7a68"
+                strokeWidth="0.8"
               />
+              {/* Nervures principales */}
               <path
-                d="M50 20 Q65 35 65 50 Q65 70 50 78 Q35 70 35 50 Q35 35 50 20"
-                fill="#a8b89f"
-              />
-              <path
-                d="M50 15 L50 80 M45 35 Q35 40 30 50 M55 35 Q65 40 70 50 M45 65 Q35 60 30 50 M55 65 Q65 60 70 50"
-                stroke="#d8e4d3"
-                strokeWidth="1.5"
+                d="M 50 15 Q 50 35 50 60"
+                stroke="#a8b89f"
+                strokeWidth="1"
                 fill="none"
+                opacity="0.7"
+              />
+              <path
+                d="M 50 35 Q 65 30 75 25"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+              <path
+                d="M 50 35 Q 35 30 25 25"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+              <path
+                d="M 50 50 Q 70 45 85 45"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+              <path
+                d="M 50 50 Q 30 45 15 45"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+              <path
+                d="M 50 60 Q 65 65 75 65"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
+              />
+              <path
+                d="M 50 60 Q 35 65 25 65"
+                stroke="#a8b89f"
+                strokeWidth="0.8"
+                fill="none"
+                opacity="0.6"
               />
             </svg>
             <div>
