@@ -316,7 +316,7 @@ function App() {
   const [profileNumber, setProfileNumber] = useState(1);
   const [showProfileSelector, setShowProfileSelector] = useState(false);
   const [deletedProfiles, setDeletedProfiles] = useState<Set<number>>(new Set());
-  const [testType, setTestType] = useState<"qcm" | "libres" | null>(null);
+  const [testType, setTestType] = useState<"qcm" | "libres" | "les_deux" | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -998,6 +998,19 @@ function App() {
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
             >
               QCM
+            </button>
+            <button
+              onClick={() => setTestType("les_deux")}
+              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold"
+              style={{
+                backgroundColor: testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                color: testType === "les_deux" ? '#8b9e85' : '#ffffff',
+                border: '2px solid white',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.3)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)')}
+            >
+              Le deux
             </button>
             <button
               onClick={() => setTestType("libres")}
