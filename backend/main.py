@@ -12,7 +12,7 @@ load_dotenv()
 
 client = Anthropic()
 
-app = FastAPI(title="Testicrousti")
+app = FastAPI(title="Testoi")
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,7 +47,7 @@ def ask_test_customization(test_name: str, language: str = "fr") -> str:
         "el": "grec",
     }.get(language, "français")
 
-    system_prompt = f"""Tu es Testicrousti, un coach bienveillant de découverte de soi.
+    system_prompt = f"""Tu es Testoi, un coach bienveillant de découverte de soi.
 L'utilisateur a choisi le thème "{test_name}".
 
 Pose une question engageante et naturelle pour personnaliser son test.
@@ -264,7 +264,7 @@ def generate_profile_with_claude(test_name: str, answers: list, questions: list,
             "choice": ans
         })
 
-    system_prompt = f"""Tu es Testicrousti, un coach de découverte de soi bienveillant, introspectif et inspirant.
+    system_prompt = f"""Tu es Testoi, un coach de découverte de soi bienveillant, introspectif et inspirant.
 
 Ton rôle: analyser les réponses du test et générer un profil personnalisé qui:
 1. Révèle des patterns et des traits authentiques
@@ -315,7 +315,7 @@ Génère un profil complet. Sois authentique et spécifique, pas générique."""
     return f"{profile_text}{answer_display}"
 
 def chat_with_claude(message: str, conversation_history: list = None, language: str = "fr") -> str:
-    """Discute avec Claude comme Testicrousti, un bot de découverte de soi"""
+    """Discute avec Claude comme Testoi, un bot de découverte de soi"""
     if conversation_history is None:
         conversation_history = []
 
@@ -332,7 +332,7 @@ def chat_with_claude(message: str, conversation_history: list = None, language: 
         "el": "grec",
     }.get(language, "français")
 
-    system_prompt = f"""Tu es Testicrousti, un chatbot bienveillant et enthousiate spécialisé dans la découverte de soi à travers des tests de personnalité.
+    system_prompt = f"""Tu es Testoi, un chatbot bienveillant et enthousiate spécialisé dans la découverte de soi à travers des tests de personnalité.
 Tu aides les jeunes à mieux se comprendre par des questions engageantes et des analyses approfondies.
 
 Caractéristiques:

@@ -321,12 +321,12 @@ function App() {
 
   const translations: {[key: string]: {[key: string]: string}} = {
     fr: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Découvre-toi mieux",
       start: "Commencer",
       chooseLang: "Choisis ta langue",
       selectLang: "Choisir une langue",
-      hello: "Bonjour! Je suis Testicrousti. Quel test veux-tu faire?",
+      hello: "Bonjour! Je suis Testoi. Quel test veux-tu faire?",
       menu: "Menu",
       history: "Historique",
       emptyHistory: "Aucun test encore",
@@ -334,12 +334,12 @@ function App() {
       chooseLanguage: "Choisis ta langue",
     },
     es: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Descúbrete mejor",
       start: "Comenzar",
       chooseLang: "Elige tu idioma",
       selectLang: "Seleccionar idioma",
-      hello: "¡Hola! Soy Testicrousti. ¿Qué prueba quieres hacer?",
+      hello: "¡Hola! Soy Testoi. ¿Qué prueba quieres hacer?",
       menu: "Menú",
       history: "Historial",
       emptyHistory: "Sin pruebas aún",
@@ -347,12 +347,12 @@ function App() {
       chooseLanguage: "Elige tu idioma",
     },
     it: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Scopri te stesso",
       start: "Iniziare",
       chooseLang: "Scegli la tua lingua",
       selectLang: "Seleziona lingua",
-      hello: "Ciao! Sono Testicrousti. Quale test vuoi fare?",
+      hello: "Ciao! Sono Testoi. Quale test vuoi fare?",
       menu: "Menu",
       history: "Cronologia",
       emptyHistory: "Nessun test ancora",
@@ -360,12 +360,12 @@ function App() {
       chooseLanguage: "Scegli la tua lingua",
     },
     zh: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "更好地了解自己",
       start: "开始",
       chooseLang: "选择您的语言",
       selectLang: "选择语言",
-      hello: "你好！我是 Testicrousti。你想做什么测试？",
+      hello: "你好！我是 Testoi。你想做什么测试？",
       menu: "菜单",
       history: "历史",
       emptyHistory: "还没有测试",
@@ -373,12 +373,12 @@ function App() {
       chooseLanguage: "选择您的语言",
     },
     ru: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Узнай себя лучше",
       start: "Начать",
       chooseLang: "Выберите язык",
       selectLang: "Выбрать язык",
-      hello: "Привет! Я Testicrousti. Какой тест ты хочешь пройти?",
+      hello: "Привет! Я Testoi. Какой тест ты хочешь пройти?",
       menu: "Меню",
       history: "История",
       emptyHistory: "Тестов еще нет",
@@ -386,12 +386,12 @@ function App() {
       chooseLanguage: "Выберите язык",
     },
     pt: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Descubra-se melhor",
       start: "Começar",
       chooseLang: "Escolha seu idioma",
       selectLang: "Selecionar idioma",
-      hello: "Olá! Sou Testicrousti. Qual teste você quer fazer?",
+      hello: "Olá! Sou Testoi. Qual teste você quer fazer?",
       menu: "Menu",
       history: "Histórico",
       emptyHistory: "Nenhum teste ainda",
@@ -399,12 +399,12 @@ function App() {
       chooseLanguage: "Escolha seu idioma",
     },
     he: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "גלה את עצמך",
       start: "התחל",
       chooseLang: "בחר את השפה שלך",
       selectLang: "בחר שפה",
-      hello: "שלום! אני Testicrousti. איזה בדיקה אתה רוצה לעשות?",
+      hello: "שלום! אני Testoi. איזה בדיקה אתה רוצה לעשות?",
       menu: "תפריט",
       history: "היסטוריה",
       emptyHistory: "אין בדיקות עדיין",
@@ -412,12 +412,12 @@ function App() {
       chooseLanguage: "בחר את השפה שלך",
     },
     el: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Ανακάλυψε τον εαυτό σου",
       start: "Ξεκινήστε",
       chooseLang: "Επιλέξτε τη γλώσσα σας",
       selectLang: "Επιλέξτε γλώσσα",
-      hello: "Γεια σας! Είμαι ο Testicrousti. Ποιο τεστ θέλετε να κάνετε;",
+      hello: "Γεια σας! Είμαι ο Testoi. Ποιο τεστ θέλετε να κάνετε;",
       menu: "Μενού",
       history: "Ιστορικό",
       emptyHistory: "Κανένα τεστ ακόμα",
@@ -425,12 +425,12 @@ function App() {
       chooseLanguage: "Επιλέξτε τη γλώσσα σας",
     },
     en: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Discover yourself",
       start: "Start",
       chooseLang: "Choose your language",
       selectLang: "Select a language",
-      hello: "Hello! I'm Testicrousti. What test would you like to take?",
+      hello: "Hello! I'm Testoi. What test would you like to take?",
       menu: "Menu",
       history: "History",
       emptyHistory: "No tests yet",
@@ -438,12 +438,12 @@ function App() {
       chooseLanguage: "Choose your language",
     },
     de: {
-      welcome: "Testicrousti",
+      welcome: "Testoi",
       subtitle: "Entdecke dich selbst",
       start: "Starten",
       chooseLang: "Wähle deine Sprache",
       selectLang: "Sprache wählen",
-      hello: "Hallo! Ich bin Testicrousti. Welchen Test möchtest du machen?",
+      hello: "Hallo! Ich bin Testoi. Welchen Test möchtest du machen?",
       menu: "Menü",
       history: "Verlauf",
       emptyHistory: "Noch keine Tests",
@@ -1094,7 +1094,7 @@ function App() {
         </div>
 
         <div className="splash-content">
-          <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testicrousti</h1>
+          <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
           <p className="splash-subtitle text-white mt-4" style={{fontWeight: '700'}}>
             it's about you and only you
           </p>
@@ -1540,7 +1540,7 @@ function App() {
               />
             </svg>
             <div>
-              <h1 className="text-2xl font-bold text-white" style={{letterSpacing: '0.5px'}}>Testicrousti</h1>
+              <h1 className="text-2xl font-bold text-white" style={{letterSpacing: '0.5px'}}>Testoi</h1>
               <p className="text-sm" style={{color: '#dde5db'}}>Découvre-toi mieux</p>
             </div>
           </div>
@@ -1761,7 +1761,7 @@ function App() {
           {loading && (
             <div className="flex justify-start">
               <div className="px-4 py-3 rounded-lg text-sm" style={{backgroundColor: '#d8e4d3', color: '#3d4a38'}}>
-                <p>Testicrousti réfléchit...</p>
+                <p>Testoi réfléchit...</p>
               </div>
             </div>
           )}
