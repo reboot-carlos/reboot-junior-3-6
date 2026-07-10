@@ -1114,7 +1114,62 @@ function App() {
         </div>
 
         <div className="splash-content">
-          <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
+          {/* Titre Scrabble style */}
+          <div style={{position: 'relative', width: '400px', height: '200px', margin: '0 auto'}}>
+            {/* Testoi horizontal */}
+            <div style={{position: 'absolute', top: '40px', left: '20px', display: 'flex', gap: '8px'}}>
+              {['T', 'e', 's', 't', 'o', 'i'].map((letter, i) => (
+                <div key={i} style={{
+                  width: '40px', height: '40px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: i === 0 || i === 3 ? '#8b9e85' : '#d4e8d4',
+                  border: '2px solid #5a7a66',
+                  color: '#1a1a1a',
+                  fontSize: '20px', fontWeight: 'bold',
+                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite',
+                  opacity: 0
+                }}>
+                  {letter}
+                </div>
+              ))}
+            </div>
+
+            {/* oi vertical (à partir du T) */}
+            <div style={{position: 'absolute', top: '80px', left: '20px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
+              {['o', 'i'].map((letter, i) => (
+                <div key={i} style={{
+                  width: '40px', height: '40px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: '#d4e8d4',
+                  border: '2px solid #5a7a66',
+                  color: '#1a1a1a',
+                  fontSize: '20px', fontWeight: 'bold',
+                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.2s infinite',
+                  opacity: 0
+                }}>
+                  {letter}
+                </div>
+              ))}
+            </div>
+
+            {/* test vertical (à partir du 2e t) */}
+            <div style={{position: 'absolute', top: '40px', left: '148px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
+              {['t', 'e', 's', 't'].map((letter, i) => (
+                <div key={i} style={{
+                  width: '40px', height: '40px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: i === 3 ? '#8b9e85' : '#d4e8d4',
+                  border: '2px solid #5a7a66',
+                  color: '#1a1a1a',
+                  fontSize: '20px', fontWeight: 'bold',
+                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.4s infinite',
+                  opacity: 0
+                }}>
+                  {letter}
+                </div>
+              ))}
+            </div>
+          </div>
           <p className="splash-subtitle text-white mt-4" style={{fontWeight: '700'}}>
             it's about you and only you
           </p>
