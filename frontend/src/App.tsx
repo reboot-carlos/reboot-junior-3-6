@@ -1595,17 +1595,93 @@ function App() {
               >
                 + Nouveau profil
               </button>
-              <button
-                onClick={() => setMode(mode === "history" ? "menu" : "history")}
-                className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  color: '#ffffff',
-                  border: '2px solid white',
-                }}
-              >
-                📋 Historique
-              </button>
+              <div className="relative w-full">
+                <button
+                  onClick={() => setMode(mode === "history" ? "menu" : "history")}
+                  className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
+                    border: '2px solid white',
+                  }}
+                >
+                  Historique
+                </button>
+                {mode === "history" && history.length > 0 && (
+                  <div
+                    className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto"
+                    style={{backgroundColor: '#f1f5f0', border: '2px solid #8b9e85'}}
+                  >
+                    {history.map((item) => (
+                      <div
+                        key={item.id}
+                        className="flex items-center justify-between px-4 py-3 border-b hover:bg-opacity-50 transition-all text-sm"
+                        style={{
+                          backgroundColor: '#eef2ec',
+                          borderColor: '#8b9e85',
+                          color: '#3d4a38',
+                        }}
+                      >
+                        <div className="flex-1">
+                          <div className="font-semibold">{item.name}</div>
+                          <div className="text-xs opacity-80">
+                            {item.date} - Profil {item.profileNumber}
+                          </div>
+                          <div className="text-xs opacity-70">
+                            Progression: {item.questionIndex}/10
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => {
+                            setTestName(item.name);
+                            setQuestions(item.questions);
+                            setAnswers(item.answers);
+                            setQuestionIndex(item.questionIndex);
+                            setProfileNumber(item.profileNumber);
+                            setMode("test");
+                            setMessages([
+                              {
+                                id: 1,
+                                text: `Reprendre ${item.name}?\n\nTu étais à la question ${item.questionIndex + 1}/10.`,
+                                isBot: true,
+                              },
+                            ]);
+                            setShowMobileSidebar(false);
+                          }}
+                          className="ml-2 px-3 py-1 rounded-lg text-xs font-semibold transition-all text-white border-2"
+                          style={{
+                            backgroundColor: '#8b9e85',
+                            borderColor: '#7a8c78',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          ▶
+                        </button>
+                      </div>
+                    ))}
+                    <div className="px-4 py-2 border-t text-center">
+                      <button
+                        onClick={() => {
+                          if (confirm(language === 'fr' ? 'Supprimer tout l\'historique ?' : 'Clear history?')) {
+                            setHistory([]);
+                            setMode("menu");
+                          }
+                        }}
+                        className="px-4 py-2 rounded-lg text-xs font-semibold transition-all text-white border-2"
+                        style={{
+                          backgroundColor: '#a68a7a',
+                          borderColor: '#9a7a6a',
+                          cursor: 'pointer',
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#9a7a6a')}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a68a7a')}
+                      >
+                        Supprimer l'historique
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {profileNumber > 1 && (
                 <div className="relative w-full">
