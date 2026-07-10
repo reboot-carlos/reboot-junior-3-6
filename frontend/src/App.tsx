@@ -1404,7 +1404,7 @@ function App() {
       <div className={`${!showSplash ? 'flex-1' : 'w-full'} w-full md:flex-1 flex flex-col rounded-none shadow-none overflow-hidden`} style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité avec menu hamburger */}
-        <div className="p-2 sm:p-3 md:p-3 flex gap-2 sm:gap-3 md:gap-4 pl-3 sm:pl-6 md:pl-10 items-center justify-between" style={{backgroundColor: '#7a8c78'}}>
+        <div className="p-2 sm:p-3 md:p-3 flex gap-2 sm:gap-3 md:gap-4 pl-3 sm:pl-6 md:pl-10 items-center justify-between relative" style={{backgroundColor: '#7a8c78'}}>
           {/* Menu Hamburger (visible sur mobile/tablette) */}
           <button
             onClick={() => setShowMobileSidebar(!showMobileSidebar)}
