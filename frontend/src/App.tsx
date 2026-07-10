@@ -1114,62 +1114,7 @@ function App() {
         </div>
 
         <div className="splash-content">
-          {/* Titre Scrabble style */}
-          <div style={{position: 'relative', width: '400px', height: '280px', margin: '0 auto'}}>
-            {/* TEST vertical (descend d'en haut, croise le T de Testoi) */}
-            <div style={{position: 'absolute', top: '0px', left: '20px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
-              {['T', 'E', 'S', 'T'].map((letter, i) => (
-                <div key={i} style={{
-                  width: '40px', height: '40px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: i === 3 ? '#8b9e85' : '#d4e8d4',
-                  border: '2px solid #5a7a66',
-                  color: '#1a1a1a',
-                  fontSize: '20px', fontWeight: 'bold',
-                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 0.8s infinite',
-                  opacity: 0
-                }}>
-                  {letter}
-                </div>
-              ))}
-            </div>
-
-            {/* Testoi horizontal */}
-            <div style={{position: 'absolute', top: '120px', left: '20px', display: 'flex', gap: '8px'}}>
-              {['T', 'e', 's', 't', 'o', 'i'].map((letter, i) => (
-                <div key={i} style={{
-                  width: '40px', height: '40px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: i === 0 ? '#8b9e85' : '#d4e8d4',
-                  border: '2px solid #5a7a66',
-                  color: '#1a1a1a',
-                  fontSize: '20px', fontWeight: 'bold',
-                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite',
-                  opacity: 0
-                }}>
-                  {letter}
-                </div>
-              ))}
-            </div>
-
-            {/* oi vertical (à partir du T) */}
-            <div style={{position: 'absolute', top: '160px', left: '20px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
-              {['o', 'i'].map((letter, i) => (
-                <div key={i} style={{
-                  width: '40px', height: '40px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: '#d4e8d4',
-                  border: '2px solid #5a7a66',
-                  color: '#1a1a1a',
-                  fontSize: '20px', fontWeight: 'bold',
-                  animation: 'fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1.2s infinite',
-                  opacity: 0
-                }}>
-                  {letter}
-                </div>
-              ))}
-            </div>
-          </div>
+          <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
           <p className="splash-subtitle text-white mt-4" style={{fontWeight: '700'}}>
             it's about you and only you
           </p>
