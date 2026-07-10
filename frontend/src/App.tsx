@@ -1547,11 +1547,23 @@ function App() {
           {/* Sidebar mobile (visible sur sm/md) */}
           {showMobileSidebar && (
             <div className="lg:hidden absolute top-full left-0 right-0 flex flex-col gap-2 p-3 z-40" style={{backgroundColor: '#7a8c78'}}>
+              {/* Bouton fermeture X */}
               <button
-                onClick={() => {
-                  setAiPersonality("sympa");
-                  setShowMobileSidebar(false);
+                onClick={() => setShowMobileSidebar(false)}
+                className="self-end px-3 py-2 rounded-lg text-white border-2 font-bold transition-all"
+                style={{
+                  backgroundColor: '#a68a7a',
+                  borderColor: '#9a7a6a',
+                  cursor: 'pointer',
                 }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#9a7a6a')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#a68a7a')}
+              >
+                ✕
+              </button>
+
+              <button
+                onClick={() => setAiPersonality("sympa")}
                 className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
@@ -1562,10 +1574,7 @@ function App() {
                 Sympa
               </button>
               <button
-                onClick={() => {
-                  setAiPersonality("professionnel");
-                  setShowMobileSidebar(false);
-                }}
+                onClick={() => setAiPersonality("professionnel")}
                 className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
@@ -1576,10 +1585,7 @@ function App() {
                 Professionnel
               </button>
               <button
-                onClick={() => {
-                  startChat();
-                  setShowMobileSidebar(false);
-                }}
+                onClick={startChat}
                 className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
