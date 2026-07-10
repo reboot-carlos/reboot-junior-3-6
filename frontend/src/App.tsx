@@ -1552,7 +1552,7 @@ function App() {
                   setAiPersonality("sympa");
                   setShowMobileSidebar(false);
                 }}
-                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
                   color: aiPersonality === "sympa" ? '#7a8c78' : '#ffffff',
@@ -1566,7 +1566,7 @@ function App() {
                   setAiPersonality("professionnel");
                   setShowMobileSidebar(false);
                 }}
-                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
                   color: aiPersonality === "professionnel" ? '#7a8c78' : '#ffffff',
@@ -1580,7 +1580,7 @@ function App() {
                   startChat();
                   setShowMobileSidebar(false);
                 }}
-                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
                   color: '#ffffff',
@@ -1590,19 +1590,88 @@ function App() {
                 + Nouveau profil
               </button>
               {profileNumber > 1 && (
-                <button
-                  onClick={() => {
-                    setShowProfileSelector(!showProfileSelector);
-                  }}
-                  className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    color: '#ffffff',
-                    border: '2px solid white',
-                  }}
-                >
-                  Profils
-                </button>
+                <div className="relative w-full">
+                  <button
+                    onClick={() => {
+                      setShowProfileSelector(!showProfileSelector);
+                    }}
+                    className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
+                    style={{
+                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      color: '#ffffff',
+                      border: '2px solid white',
+                    }}
+                  >
+                    Profils
+                  </button>
+                  {showProfileSelector && (
+                    <div
+                      className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto"
+                      style={{backgroundColor: '#f1f5f0', border: '2px solid #8b9e85'}}
+                    >
+                      {Array.from({length: profileNumber - 1}, (_, i) => i + 1)
+                        .filter(num => !deletedProfiles.has(num))
+                        .map((num) => (
+                        <div
+                          key={num}
+                          className="flex items-center justify-between px-4 py-3 border-b hover:bg-opacity-50 transition-all text-sm sm:text-base"
+                          style={{
+                            backgroundColor: profileNumber === num ? '#d8e4d3' : '#eef2ec',
+                            borderColor: '#8b9e85',
+                            color: '#3d4a38',
+                          }}
+                        >
+                          <button
+                            onClick={() => {
+                              setProfileNumber(num);
+                              setShowProfileSelector(false);
+                              setShowMobileSidebar(false);
+                              setMode("menu");
+                              const testsOfProfile = history.filter(h => h.profileNumber === num);
+                              setMessages([
+                                {
+                                  id: 1,
+                                  text: `Bienvenue sur Profil ${num}! 🎯\n\nTu as ${testsOfProfile.length} test${testsOfProfile.length !== 1 ? 's' : ''} enregistré${testsOfProfile.length !== 1 ? 's' : ''} sur ce profil.\n\nQuel test veux-tu faire?`,
+                                  isBot: true,
+                                },
+                              ]);
+                            }}
+                            className="flex-1 text-left font-semibold"
+                            style={{color: '#3d4a38'}}
+                          >
+                            Profil {num}
+                            {profileNumber === num && ' ✓'}
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (confirm('Supprimer ce profil ?')) {
+                                const newDeleted = new Set(deletedProfiles);
+                                newDeleted.add(num);
+                                setDeletedProfiles(newDeleted);
+                                if (profileNumber === num) {
+                                  const activeProfiles = Array.from({length: profileNumber - 1}, (_, i) => i + 1)
+                                    .filter(n => !newDeleted.has(n));
+                                  if (activeProfiles.length > 0) {
+                                    setProfileNumber(activeProfiles[activeProfiles.length - 1]);
+                                  }
+                                }
+                              }
+                            }}
+                            className="ml-2 px-3 py-1 rounded-lg text-xs font-semibold transition-all text-white border-2"
+                            style={{
+                              backgroundColor: '#a68a7a',
+                              borderColor: '#9a7a6a',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           )}
