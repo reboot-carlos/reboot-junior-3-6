@@ -332,6 +332,10 @@ function App() {
       emptyHistory: "Aucun test encore",
       clearHistory: "Vider l'historique",
       chooseLanguage: "Choisis ta langue",
+      chooseTestType: "Choisir un type de test",
+      qcm: "QCM",
+      libres: "Réponses libres",
+      les_deux: "Les deux",
     },
     es: {
       welcome: "Testoi",
@@ -345,6 +349,10 @@ function App() {
       emptyHistory: "Sin pruebas aún",
       clearHistory: "Vaciar papelera",
       chooseLanguage: "Elige tu idioma",
+      chooseTestType: "Elige un tipo de prueba",
+      qcm: "Opción múltiple",
+      libres: "Respuestas libres",
+      les_deux: "Ambas",
     },
     it: {
       welcome: "Testoi",
@@ -358,6 +366,10 @@ function App() {
       emptyHistory: "Nessun test ancora",
       clearHistory: "Svuota il cestino",
       chooseLanguage: "Scegli la tua lingua",
+      chooseTestType: "Scegli un tipo di test",
+      qcm: "Scelta multipla",
+      libres: "Risposte libere",
+      les_deux: "Entrambi",
     },
     zh: {
       welcome: "Testoi",
@@ -371,6 +383,10 @@ function App() {
       emptyHistory: "还没有测试",
       clearHistory: "清空垃圾箱",
       chooseLanguage: "选择您的语言",
+      chooseTestType: "选择测试类型",
+      qcm: "多选题",
+      libres: "自由回答",
+      les_deux: "两者",
     },
     ru: {
       welcome: "Testoi",
@@ -384,6 +400,10 @@ function App() {
       emptyHistory: "Тестов еще нет",
       clearHistory: "Очистить корзину",
       chooseLanguage: "Выберите язык",
+      chooseTestType: "Выберите тип теста",
+      qcm: "Множественный выбор",
+      libres: "Свободные ответы",
+      les_deux: "Оба варианта",
     },
     pt: {
       welcome: "Testoi",
@@ -397,6 +417,10 @@ function App() {
       emptyHistory: "Nenhum teste ainda",
       clearHistory: "Esvaziar lixo",
       chooseLanguage: "Escolha seu idioma",
+      chooseTestType: "Escolha um tipo de teste",
+      qcm: "Escolha múltipla",
+      libres: "Respostas livres",
+      les_deux: "Ambas",
     },
     he: {
       welcome: "Testoi",
@@ -410,6 +434,10 @@ function App() {
       emptyHistory: "אין בדיקות עדיין",
       clearHistory: "רוקן את הסל",
       chooseLanguage: "בחר את השפה שלך",
+      chooseTestType: "בחר סוג בדיקה",
+      qcm: "בחירה מרובה",
+      libres: "תשובות חופשיות",
+      les_deux: "שניהם",
     },
     el: {
       welcome: "Testoi",
@@ -423,6 +451,10 @@ function App() {
       emptyHistory: "Κανένα τεστ ακόμα",
       clearHistory: "Άδειασμα κάδου",
       chooseLanguage: "Επιλέξτε τη γλώσσα σας",
+      chooseTestType: "Επιλέξτε τύπο δοκιμής",
+      qcm: "Πολλαπλή επιλογή",
+      libres: "Ελεύθερες απαντήσεις",
+      les_deux: "Και τα δύο",
     },
     en: {
       welcome: "Testoi",
@@ -436,6 +468,10 @@ function App() {
       emptyHistory: "No tests yet",
       clearHistory: "Empty trash",
       chooseLanguage: "Choose your language",
+      chooseTestType: "Choose a test type",
+      qcm: "Multiple choice",
+      libres: "Free responses",
+      les_deux: "Both",
     },
     de: {
       welcome: "Testoi",
@@ -449,6 +485,10 @@ function App() {
       emptyHistory: "Noch keine Tests",
       clearHistory: "Papierkorb leeren",
       chooseLanguage: "Wähle deine Sprache",
+      chooseTestType: "Wähle einen Testtyp",
+      qcm: "Mehrfachauswahl",
+      libres: "Freie Antworten",
+      les_deux: "Beide",
     },
   };
 
@@ -715,6 +755,7 @@ function App() {
           test_name: testName,
           step: "generate_test",
           language: language,
+          test_type: testType,
         }),
       });
       const data = await res.json();
@@ -766,14 +807,14 @@ function App() {
 
   const handleTestAnswer = async (message: string) => {
     const answer = message.toUpperCase();
-    const isValidAnswer = ["A", "B", "C", "D"].includes(answer) || (testType === "les_deux" && message.trim().length > 0);
+    const isValidAnswer = ["A", "B", "C", "D"].includes(answer) || ((testType === "les_deux" || testType === "libres") && message.trim().length > 0);
 
     if (!isValidAnswer) {
       setMessages((prev) => [
         ...prev,
         {
           id: prev.length + 1,
-          text: testType === "les_deux" ? "Réponds par A, B, C, D ou écris une réponse libre!" : "Réponds par A, B, C ou D stp!",
+          text: testType === "libres" ? "Écris ta réponse!" : (testType === "les_deux" ? "Réponds par A, B, C, D ou écris une réponse libre!" : "Réponds par A, B, C ou D stp!"),
           isBot: true,
         },
       ]);
@@ -1154,7 +1195,7 @@ function App() {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
-              QCM
+              {language && translations[language].qcm}
             </button>
             <button
               onClick={() => setTestType("les_deux")}
@@ -1169,7 +1210,7 @@ function App() {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
-              Les deux
+              {language && translations[language].les_deux}
             </button>
             <button
               onClick={() => setTestType("libres")}
@@ -1184,7 +1225,7 @@ function App() {
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)')}
             >
-              Réponses libres
+              {language && translations[language].libres}
             </button>
           </div>
 
@@ -1209,7 +1250,7 @@ function App() {
             onMouseEnter={(e) => language && testType && (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.5)')}
           >
-            {language && testType ? translations[language].start : language ? "Choisir un type de test" : "Choisir une langue"}
+            {language && testType ? translations[language].start : (language ? translations[language].chooseTestType : "Choisir une langue")}
           </button>
         </div>
       </div>
@@ -1808,12 +1849,12 @@ function App() {
               />
               <button
                 onClick={handleSendMessage}
-                disabled={(testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading}
+                disabled={(testType === "les_deux" || testType === "libres" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading}
                 className="px-5 py-3 font-semibold rounded-lg transition-all text-white"
                 style={{
                   backgroundColor: '#8b9e85',
-                  opacity: ((testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 0.6 : 1,
-                  cursor: ((testType === "les_deux" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 'not-allowed' : 'pointer',
+                  opacity: ((testType === "les_deux" || testType === "libres" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 0.6 : 1,
+                  cursor: ((testType === "les_deux" || testType === "libres" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 'not-allowed' : 'pointer',
                 }}
               >
                 Envoyer

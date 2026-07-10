@@ -31,6 +31,7 @@ class ChatRequest(BaseModel):
     answers: list | None = None
     conversation_history: list | None = None
     language: str | None = None
+    test_type: str | None = None
 
 def ask_test_customization(test_name: str, language: str = "fr") -> str:
     """Demande à l'utilisateur comment personnaliser le test avec support multilingue"""
@@ -64,29 +65,43 @@ IMPORTANT:
     )
     return response.content[0].text
 
-def generate_test_with_claude(test_name: str, user_preference: str = "", language: str = "fr") -> dict:
+def generate_test_with_claude(test_name: str, user_preference: str = "", language: str = "fr", test_type: str = "qcm") -> dict:
     """Génère 10 questions de test personnalisées en fonction des préférences et de la langue"""
+
+    # Format les prompts en fonction du type de test
+    if test_type == "libres":
+        system_suffix = """
+
+IMPORTANT: Les questions doivent être SANS options. Ce sont des questions ouvertes."""
+        format_json = """Format JSON (EXACTEMENT):
+{"questions": [
+  {"text": "Question ouverte sans options?"},
+  ...
+]}"""
+    else:
+        system_suffix = ""
+        format_json = """Format JSON (EXACTEMENT):
+{"questions": [
+  {"text": "Question?", "options": ["Option A", "Option B", "Option C", "Option D"]},
+  ...
+]}"""
 
     # Prompts en différentes langues
     prompts = {
         "fr": {
-            "system": """Tu es un expert en création de tests de personnalité pour jeunes adultes.
+            "system": f"""Tu es un expert en création de tests de personnalité pour jeunes adultes.
 Tu dois générer 10 questions pertinentes, originales et engageantes, adaptées à la préférence de l'utilisateur.
 
 RÈGLES STRICTES:
 1. Retourne UNIQUEMENT un JSON valide, sans markdown ni texte supplémentaire
 2. Chaque question doit être différente en approche
-3. Les 4 options doivent être nuancées et représenter des perspectives différentes
-4. Aucune option ne doit être clairement "meilleure" qu'une autre
+3. {'Les questions doivent être sans réponse prédéfinie' if test_type == 'libres' else 'Les 4 options doivent être nuancées et représenter des perspectives différentes'}
+4. {'Pas de réponse "correcte", juste explorer les pensées' if test_type == 'libres' else 'Aucune option ne doit être clairement "meilleure" qu\'une autre'}
 5. Les questions doivent explorer la psychologie et les préférences de manière subtile
 6. Les questions doivent être personnalisées en fonction du commentaire de l'utilisateur
-7. Réponds TOUJOURS en français
+7. Réponds TOUJOURS en français{system_suffix}
 
-Format JSON (EXACTEMENT):
-{"questions": [
-  {"text": "Question?", "options": ["Option A", "Option B", "Option C", "Option D"]},
-  ...
-]}""",
+{format_json}""",
             "user": f"""Crée 10 questions uniques pour ce test: {test_name}
 
 Préférence de l'utilisateur: {user_preference}
@@ -380,7 +395,8 @@ async def chat(request: ChatRequest) -> dict:
             test_name = request.test_name or request.message or ""
             user_preference = request.message or ""
             language = request.language or "fr"
-            data = generate_test_with_claude(test_name, user_preference, language)
+            test_type = request.test_type or "qcm"
+            data = generate_test_with_claude(test_name, user_preference, language, test_type)
             return {"questions": data["questions"]}
         except Exception as e:
             print(f"Erreur génération test: {e}")
