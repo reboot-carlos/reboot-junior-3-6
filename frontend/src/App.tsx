@@ -317,6 +317,7 @@ function App() {
   const [showProfileSelector, setShowProfileSelector] = useState(false);
   const [deletedProfiles, setDeletedProfiles] = useState<Set<number>>(new Set());
   const [testType, setTestType] = useState<"qcm" | "libres" | "les_deux" | null>(null);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -1402,9 +1403,21 @@ function App() {
 
       <div className={`${!showSplash ? 'flex-1' : 'w-full'} w-full md:flex-1 flex flex-col rounded-none shadow-none overflow-hidden`} style={{backgroundColor: '#f1f5f0'}}>
 
-        {/* Barre de personnalité */}
-        <div className="p-2 sm:p-3 md:p-3 flex gap-2 sm:gap-3 md:gap-4 pl-3 sm:pl-6 md:pl-10" style={{backgroundColor: '#7a8c78'}}>
-          <div className="flex gap-4">
+        {/* Barre de personnalité avec menu hamburger */}
+        <div className="p-2 sm:p-3 md:p-3 flex gap-2 sm:gap-3 md:gap-4 pl-3 sm:pl-6 md:pl-10 items-center justify-between" style={{backgroundColor: '#7a8c78'}}>
+          {/* Menu Hamburger (visible sur mobile/tablette) */}
+          <button
+            onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+            className="lg:hidden flex flex-col gap-1.5 p-2 rounded transition-all"
+            style={{backgroundColor: 'rgba(255, 255, 255, 0.2)'}}
+          >
+            <div style={{width: '20px', height: '2px', backgroundColor: '#ffffff'}}></div>
+            <div style={{width: '20px', height: '2px', backgroundColor: '#ffffff'}}></div>
+            <div style={{width: '20px', height: '2px', backgroundColor: '#ffffff'}}></div>
+          </button>
+
+          {/* Barre normale (visible sur desktop) */}
+          <div className="hidden lg:flex gap-4 flex-1">
             <button
               onClick={() => setAiPersonality("sympa")}
               className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
@@ -1431,8 +1444,6 @@ function App() {
             >
               Professionnel
             </button>
-          </div>
-          <div className="flex gap-2">
             <button
               onClick={startChat}
               className="px-6 py-2 rounded-lg font-semibold text-sm transition-all"
@@ -1532,6 +1543,69 @@ function App() {
               </div>
             )}
           </div>
+
+          {/* Sidebar mobile (visible sur sm/md) */}
+          {showMobileSidebar && (
+            <div className="lg:hidden absolute top-full left-0 right-0 flex flex-col gap-2 p-3 z-40" style={{backgroundColor: '#7a8c78'}}>
+              <button
+                onClick={() => {
+                  setAiPersonality("sympa");
+                  setShowMobileSidebar(false);
+                }}
+                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                style={{
+                  backgroundColor: aiPersonality === "sympa" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                  color: aiPersonality === "sympa" ? '#7a8c78' : '#ffffff',
+                  border: '2px solid white',
+                }}
+              >
+                Sympa
+              </button>
+              <button
+                onClick={() => {
+                  setAiPersonality("professionnel");
+                  setShowMobileSidebar(false);
+                }}
+                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                style={{
+                  backgroundColor: aiPersonality === "professionnel" ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                  color: aiPersonality === "professionnel" ? '#7a8c78' : '#ffffff',
+                  border: '2px solid white',
+                }}
+              >
+                Professionnel
+              </button>
+              <button
+                onClick={() => {
+                  startChat();
+                  setShowMobileSidebar(false);
+                }}
+                className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  color: '#ffffff',
+                  border: '2px solid white',
+                }}
+              >
+                + Nouveau profil
+              </button>
+              {profileNumber > 1 && (
+                <button
+                  onClick={() => {
+                    setShowProfileSelector(!showProfileSelector);
+                  }}
+                  className="px-4 py-2 rounded-lg font-semibold text-sm transition-all w-full text-left"
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
+                    border: '2px solid white',
+                  }}
+                >
+                  Profils
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* En-tête */}
