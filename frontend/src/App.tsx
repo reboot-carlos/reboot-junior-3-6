@@ -1611,7 +1611,7 @@ function App() {
               >
                 + Nouveau profil
               </button>
-              <div className="relative w-full">
+              <div className="relative w-full lg:hidden">
                 <button
                   onClick={() => setShowHistoryDropdown(!showHistoryDropdown)}
                   className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
