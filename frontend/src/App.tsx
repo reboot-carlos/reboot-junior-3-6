@@ -2139,7 +2139,7 @@ function App() {
       </div>
 
       {/* Météo, date et menu en haut */}
-      <div className="hidden sm:flex fixed top-2 left-[60%] -translate-x-1/2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg text-white shadow-lg z-40 items-center gap-3 sm:gap-4 md:gap-8" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
+      <div className="hidden sm:flex fixed top-2 left-[80%] -translate-x-1/2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg text-white shadow-lg z-40 items-center gap-3 sm:gap-4 md:gap-8" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
         {weather && (
           <div className="flex items-center gap-2">
             <span className="text-2xl">{weather.icon}</span>
