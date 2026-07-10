@@ -1116,9 +1116,9 @@ function App() {
         <div className="splash-content">
           {/* Titre Scrabble style */}
           <div style={{position: 'relative', width: '400px', height: '280px', margin: '0 auto'}}>
-            {/* test vertical (descend d'en haut, croise le T de Testoi) */}
+            {/* TEST vertical (descend d'en haut, croise le T de Testoi) */}
             <div style={{position: 'absolute', top: '0px', left: '20px', display: 'flex', flexDirection: 'column', gap: '8px'}}>
-              {['t', 'e', 's', 't'].map((letter, i) => (
+              {['T', 'E', 'S', 'T'].map((letter, i) => (
                 <div key={i} style={{
                   width: '40px', height: '40px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
