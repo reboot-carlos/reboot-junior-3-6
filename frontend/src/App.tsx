@@ -928,6 +928,7 @@ function App() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundAttachment: 'fixed',
+          backgroundClip: 'border-box',
         }}
       >
         <style>{`
@@ -965,8 +966,9 @@ function App() {
             width: 100%;
             height: 100%;
             background-image: url('/pixel-forest.jpg');
-            background-size: 110%;
-            background-position: 30px -60px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
           }
           @keyframes floatPixel {
