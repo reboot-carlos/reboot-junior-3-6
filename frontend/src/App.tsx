@@ -1158,7 +1158,7 @@ function App() {
         </div>
 
         <div className="splash-content">
-          <h1 className="splash-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
+          <h1 className="splash-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
           <p className="splash-subtitle text-white mt-4" style={{fontWeight: '700'}}>
             it's about you and only you
           </p>
