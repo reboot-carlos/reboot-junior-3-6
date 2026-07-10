@@ -1101,7 +1101,7 @@ function App() {
           }
           .splash-title {
             font-family: 'Poppins', sans-serif;
-            font-size: 4.5rem;
+            font-size: clamp(3rem, 12vw, 10rem);
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
