@@ -318,6 +318,7 @@ function App() {
   const [deletedProfiles, setDeletedProfiles] = useState<Set<number>>(new Set());
   const [testType, setTestType] = useState<"qcm" | "libres" | "les_deux" | null>(null);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
+  const [showHistoryDropdown, setShowHistoryDropdown] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const translations: {[key: string]: {[key: string]: string}} = {
@@ -1597,7 +1598,7 @@ function App() {
               </button>
               <div className="relative w-full">
                 <button
-                  onClick={() => setMode(mode === "history" ? "menu" : "history")}
+                  onClick={() => setShowHistoryDropdown(!showHistoryDropdown)}
                   className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
                   style={{
                     backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -1605,9 +1606,9 @@ function App() {
                     border: '2px solid white',
                   }}
                 >
-                  Historique
+                  Historique {showHistoryDropdown ? '▼' : '▶'}
                 </button>
-                {mode === "history" && history.length > 0 && (
+                {showHistoryDropdown && history.length > 0 && (
                   <div
                     className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto"
                     style={{backgroundColor: '#f1f5f0', border: '2px solid #8b9e85'}}
@@ -1647,6 +1648,7 @@ function App() {
                               },
                             ]);
                             setShowMobileSidebar(false);
+                            setShowHistoryDropdown(false);
                           }}
                           className="ml-2 px-3 py-1 rounded-lg text-xs font-semibold transition-all text-white border-2"
                           style={{
@@ -1659,15 +1661,15 @@ function App() {
                         </button>
                       </div>
                     ))}
-                    <div className="px-4 py-2 border-t text-center">
+                    <div className="px-4 py-3 border-t text-center">
                       <button
                         onClick={() => {
                           if (confirm(language === 'fr' ? 'Supprimer tout l\'historique ?' : 'Clear history?')) {
                             setHistory([]);
-                            setMode("menu");
+                            setShowHistoryDropdown(false);
                           }
                         }}
-                        className="px-4 py-2 rounded-lg text-xs font-semibold transition-all text-white border-2"
+                        className="px-4 py-2 rounded-lg text-xs font-semibold transition-all text-white border-2 w-full"
                         style={{
                           backgroundColor: '#a68a7a',
                           borderColor: '#9a7a6a',
