@@ -1155,7 +1155,7 @@ function App() {
         </div>
 
         <div className="splash-content">
-          <h1 className="splash-title text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
+          <h1 className="splash-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white" style={{letterSpacing: '2px'}}>Testoi</h1>
           <p className="splash-subtitle text-white mt-4" style={{fontWeight: '700'}}>
             it's about you and only you
           </p>
@@ -1165,7 +1165,7 @@ function App() {
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className="px-4 py-2 rounded-lg transition-all text-lg font-semibold"
+                className="px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2 text-xs sm:text-sm md:text-lg rounded-lg transition-all font-semibold"
                 style={{
                   backgroundColor: language === lang.code ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                   color: language === lang.code ? '#2d5016' : '#1a1a1a',
@@ -1184,7 +1184,7 @@ function App() {
           <div className="mt-6 flex gap-3 flex-wrap justify-center">
             <button
               onClick={() => setTestType("qcm")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
+              className="px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3 text-xs sm:text-sm md:text-base lg:text-lg rounded-lg transition-all font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "qcm" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "qcm" ? '#2d5016' : '#1a1a1a',
@@ -1199,7 +1199,7 @@ function App() {
             </button>
             <button
               onClick={() => setTestType("les_deux")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
+              className="px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3 text-xs sm:text-sm md:text-base lg:text-lg rounded-lg transition-all font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "les_deux" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "les_deux" ? '#2d5016' : '#1a1a1a',
@@ -1214,7 +1214,7 @@ function App() {
             </button>
             <button
               onClick={() => setTestType("libres")}
-              className="px-6 py-3 rounded-lg transition-all text-lg font-semibold splash-button-hover"
+              className="px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3 text-xs sm:text-sm md:text-base lg:text-lg rounded-lg transition-all font-semibold splash-button-hover"
               style={{
                 backgroundColor: testType === "libres" ? '#ffffff' : 'rgba(255, 255, 255, 0.35)',
                 color: testType === "libres" ? '#2d5016' : '#1a1a1a',
@@ -1237,7 +1237,7 @@ function App() {
               }
             }}
             disabled={!language || !testType}
-            className="splash-button mt-12 px-8 py-4 font-bold text-lg transition-all rounded-lg splash-button-hover"
+            className="splash-button mt-6 sm:mt-8 md:mt-10 lg:mt-12 px-4 py-2 sm:px-6 sm:py-3 md:px-7 md:py-3.5 lg:px-8 lg:py-4 text-sm sm:text-base md:text-lg lg:text-lg font-bold transition-all rounded-lg splash-button-hover"
             style={{
               backgroundColor: language && testType ? '#ffffff' : 'rgba(255, 255, 255, 0.5)',
               color: '#1a1a1a',
@@ -1321,7 +1321,7 @@ function App() {
 
       {/* Sidebar historique */}
       {!showSplash && (
-      <div className="w-64 border-r-4 flex flex-col overflow-hidden" style={{backgroundColor: '#8b9e85', borderColor: '#7a8c78'}}>
+      <div className="hidden md:flex md:w-64 lg:w-64 border-r-4 flex-col overflow-hidden" style={{backgroundColor: '#8b9e85', borderColor: '#7a8c78'}}>
         <div className="p-4 border-b-4" style={{borderColor: '#7a8c78'}}>
           <h2 className="font-bold text-lg text-white">{language && translations[language].history}</h2>
         </div>
@@ -1398,10 +1398,10 @@ function App() {
       </div>
       )}
 
-      <div className={`${!showSplash ? 'flex-1' : 'w-full'} flex flex-col rounded-none shadow-none overflow-hidden`} style={{backgroundColor: '#f1f5f0'}}>
+      <div className={`${!showSplash ? 'flex-1' : 'w-full'} w-full md:flex-1 flex flex-col rounded-none shadow-none overflow-hidden`} style={{backgroundColor: '#f1f5f0'}}>
 
         {/* Barre de personnalité */}
-        <div className="p-3 flex gap-4 pl-10" style={{backgroundColor: '#7a8c78'}}>
+        <div className="p-2 sm:p-3 md:p-3 flex gap-2 sm:gap-3 md:gap-4 pl-3 sm:pl-6 md:pl-10" style={{backgroundColor: '#7a8c78'}}>
           <div className="flex gap-4">
             <button
               onClick={() => setAiPersonality("sympa")}
@@ -1601,7 +1601,7 @@ function App() {
               />
             </svg>
             <div>
-              <h1 className="text-2xl font-bold text-white" style={{letterSpacing: '0.5px'}}>Testoi</h1>
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white" style={{letterSpacing: '0.5px'}}>Testoi</h1>
               <p className="text-sm" style={{color: '#dde5db'}}>Découvre-toi mieux</p>
             </div>
           </div>
@@ -1662,7 +1662,8 @@ function App() {
                         backgroundColor: '#f1f5f0',
                         border: '2px solid #8b9e85',
                         color: '#3d4a38',
-                        maxWidth: '250px',
+                        maxWidth: 'min(90vw, 250px)',
+                        width: '100%',
                       }}
                     />
                   )}
@@ -1678,7 +1679,8 @@ function App() {
                         backgroundColor: '#f1f5f0',
                         border: '2px solid #8b9e85',
                         color: '#3d4a38',
-                        maxWidth: '300px',
+                        maxWidth: 'min(90vw, 300px)',
+                        width: '100%',
                       }}
                     />
                   )}
@@ -1747,7 +1749,7 @@ function App() {
               >
                 ← {language === 'fr' ? 'Retour' : language === 'en' ? 'Back' : language === 'de' ? 'Zurück' : language === 'es' ? 'Atrás' : 'Retour'}
               </button>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {TEST_CATEGORIES_GOUTS.map((category) => {
                   const translated = language && CATEGORIES_TRANSLATIONS[language] ? CATEGORIES_TRANSLATIONS[language][category.id] : category;
                   return (
@@ -1791,7 +1793,7 @@ function App() {
               >
                 ← {language === 'fr' ? 'Retour' : language === 'en' ? 'Back' : language === 'de' ? 'Zurück' : language === 'es' ? 'Atrás' : 'Retour'}
               </button>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {TEST_CATEGORIES_ORIENTATION.map((category) => {
                   const translated = language && CATEGORIES_TRANSLATIONS[language] ? CATEGORIES_TRANSLATIONS[language][category.id] : category;
                   return (
@@ -1831,7 +1833,7 @@ function App() {
         </div>
 
         {/* Barre de chat */}
-        <div className="p-4 flex gap-2 border-t-4" style={{backgroundColor: '#f1f5f0', borderColor: '#8b9e85'}}>
+        <div className="p-2 sm:p-3 md:p-4 flex gap-1 sm:gap-2 md:gap-2 border-t-4" style={{backgroundColor: '#f1f5f0', borderColor: '#8b9e85'}}>
           {mode === "test" ? (
             <>
               <input
@@ -1839,7 +1841,7 @@ function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value.toUpperCase())}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                className="flex-1 px-4 py-3 rounded-lg text-sm focus:outline-none transition-all text-center font-semibold"
+                className="flex-1 px-2 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-3 rounded-lg text-xs sm:text-sm focus:outline-none transition-all text-center font-semibold"
                 style={{
                   backgroundColor: '#f1f5f0',
                   border: '2px solid #8b9e85',
@@ -1850,7 +1852,7 @@ function App() {
               <button
                 onClick={handleSendMessage}
                 disabled={(testType === "les_deux" || testType === "libres" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading}
-                className="px-5 py-3 font-semibold rounded-lg transition-all text-white"
+                className="px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all text-white"
                 style={{
                   backgroundColor: '#8b9e85',
                   opacity: ((testType === "les_deux" || testType === "libres" ? !input.trim() : !['A', 'B', 'C', 'D'].includes(input)) || loading) ? 0.6 : 1,
@@ -1867,7 +1869,7 @@ function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-                className="flex-1 px-4 py-3 rounded-lg text-sm focus:outline-none transition-all"
+                className="flex-1 px-2 py-2 sm:px-3 sm:py-2.5 md:px-4 md:py-3 rounded-lg text-xs sm:text-sm focus:outline-none transition-all"
                 style={{
                   backgroundColor: '#f1f5f0',
                   border: '2px solid #8b9e85',
@@ -1881,7 +1883,7 @@ function App() {
       </div>
 
       {/* Météo, date et menu en haut */}
-      <div className="fixed top-2 right-6 px-4 py-3 rounded-lg text-white shadow-lg z-40 flex items-center gap-8" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
+      <div className="hidden sm:flex fixed top-2 right-2 sm:right-4 md:right-6 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg text-white shadow-lg z-40 items-center gap-3 sm:gap-4 md:gap-8" style={{backgroundColor: 'rgba(139, 158, 133, 0.9)'}}>
         {weather && (
           <div className="flex items-center gap-2">
             <span className="text-2xl">{weather.icon}</span>

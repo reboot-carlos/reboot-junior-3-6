@@ -2,4 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TODO: ajoute ton propre style ici si tu en as besoin */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Mobile: jusqu'à 640px */
+@media (max-width: 640px) {
+  h1, h2, h3 { font-size: 1.25rem !important; }
+  button { font-size: 0.875rem !important; padding: 0.5rem 1rem !important; }
+  input { font-size: 0.875rem !important; }
+  .sidebar { width: 100% !important; max-width: 100% !important; }
+  .messages-container { padding: 0.75rem !important; }
+}
+
+/* Tablette: 641px à 1024px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1, h2, h3 { font-size: 1.5rem !important; }
+  button { font-size: 0.9375rem !important; padding: 0.625rem 1.25rem !important; }
+  input { font-size: 0.9375rem !important; }
+  .sidebar { width: 70% !important; max-width: 70% !important; }
+}
