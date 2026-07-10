@@ -1101,12 +1101,27 @@ function App() {
           }
           .splash-title {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(3rem, 12vw, 10rem);
+            font-size: 4.5rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
             animation: fadeInSimple 1s ease-out forwards, subtleHover 3s ease-in-out 1s infinite;
             opacity: 0;
+          }
+          @media (max-width: 1024px) {
+            .splash-title {
+              font-size: 6rem;
+            }
+          }
+          @media (max-width: 768px) {
+            .splash-title {
+              font-size: 5.5rem;
+            }
+          }
+          @media (max-width: 640px) {
+            .splash-title {
+              font-size: 5rem;
+            }
           }
           .splash-subtitle {
             font-family: 'Poppins', sans-serif;
