@@ -1595,6 +1595,18 @@ function App() {
               >
                 + Nouveau profil
               </button>
+              <button
+                onClick={() => setMode(mode === "history" ? "menu" : "history")}
+                className="px-4 py-3 rounded-lg font-bold text-base sm:text-lg transition-all w-full text-left"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  color: '#ffffff',
+                  border: '2px solid white',
+                }}
+              >
+                📋 Historique
+              </button>
+
               {profileNumber > 1 && (
                 <div className="relative w-full">
                   <button
