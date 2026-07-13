@@ -95,8 +95,8 @@ Tu dois générer 10 questions pertinentes, originales et engageantes, adaptées
 RÈGLES STRICTES:
 1. Retourne UNIQUEMENT un JSON valide, sans markdown ni texte supplémentaire
 2. Chaque question doit être différente en approche
-3. {'Les questions doivent être sans réponse prédéfinie' if test_type == 'libres' else 'Les 4 options doivent être nuancées et représenter des perspectives différentes'}
-4. {'Pas de réponse "correcte", juste explorer les pensées' if test_type == 'libres' else 'Aucune option ne doit être clairement "meilleure" qu\'une autre'}
+3. {"Les questions doivent être sans réponse prédéfinie" if test_type == "libres" else "Les 4 options doivent être nuancées et représenter des perspectives différentes"}
+4. {"Pas de réponse \"correcte\", juste explorer les pensées" if test_type == "libres" else "Aucune option ne doit être clairement \"meilleure\" qu'une autre"}
 5. Les questions doivent explorer la psychologie et les préférences de manière subtile
 6. Les questions doivent être personnalisées en fonction du commentaire de l'utilisateur
 7. Réponds TOUJOURS en français{system_suffix}
